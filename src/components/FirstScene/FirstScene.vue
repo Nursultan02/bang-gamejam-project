@@ -2,25 +2,38 @@
   <div class="main-wrapper">
     <div :class="isDark ? 'game dark' : 'game'">
       <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
-        <transition name="door"><div v-if="firstDoorOpened" class="openedDoor"><div class="top-shadow"></div> <div class="bottom-shadow"></div></div></transition>
+        <transition name="door">
+          <div v-if="firstDoorOpened" class="openedDoor">
+            <div class="top-shadow"></div>
+            <div class="bottom-shadow"></div>
+          </div>
+        </transition>
       </div>
       <div class="door_2" :class="{'active2': !isDark}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
+    </div>
+    <div class="absolute bottom-10 zText">
+      <textCustom text="Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек"></textCustom>
     </div>
   </div>
 </template>
 
 <script>
+import textCustom from '@/components/text'
+
 export default {
   name: "FirstScene",
-  data(){
+  data() {
     return {
       isDark: true,
       firstDoorOpened: false,
     }
   },
+  components: {
+    textCustom
+  },
   methods: {
-    openDoor(){
+    openDoor() {
       this.firstDoorOpened = !this.firstDoorOpened;
     }
   },
@@ -44,6 +57,7 @@ export default {
   border: 5px solid #fff;
   min-width: 1080px;
   min-height: 720px;
+  overflow: hidden;
   background-image: url("../../assets/images/first-scene-bg.jfif");
   background-position: center;
   background-repeat: no-repeat;
