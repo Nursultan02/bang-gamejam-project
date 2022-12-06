@@ -13,7 +13,7 @@ export default {
   name: "FirstScene",
   data(){
     return {
-      isDark: false,
+      isDark: true,
     }
   },
 }
