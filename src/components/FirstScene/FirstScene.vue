@@ -26,24 +26,26 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000000;
+  background-color: #000;
+  /*background: rgb(87,0,0);*/
+  /*background: linear-gradient(90deg, rgba(87,0,0,1) 0%, rgba(220,0,255,1) 48%, rgba(29,10,24,1) 90%);*/
 }
 
 .game {
-  border: 3px solid #b6b6b6;
-  width: 1080px;
-  height: 720px;
+  border: 5px solid #fff;
+  min-width: 1080px;
+  min-height: 720px;
   background-image: url("../../assets/images/first-scene-bg.jfif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  position: relative;
 }
 
 .door_1 {
   position: absolute;
-  left: 440px;
-  bottom: 180px;
+  left: 212px;
+  bottom: 172px;
   width: 185px;
   height: 370px;
   border: 2px solid #000000;
@@ -59,8 +61,8 @@ export default {
 
 .door_2 {
   position: absolute;
-  right: 407px;
-  bottom: 180px;
+  right: 180px;
+  bottom: 172px;
   width: 185px;
   height: 370px;
   border: 2px solid #000000;
@@ -76,8 +78,8 @@ export default {
 
 .lamp {
   position: absolute;
-  top: 75px;
-  left: 772px;
+  top: 80px;
+  left: 545px;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -86,7 +88,7 @@ export default {
 }
 
 .lamp:hover {
-  background-color: #f8f876;
+  background-color: #dede78;
   opacity: 0.5;
   cursor: pointer;
 }
