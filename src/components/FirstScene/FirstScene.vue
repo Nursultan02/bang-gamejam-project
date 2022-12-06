@@ -1,7 +1,9 @@
 <template>
   <div class="main-wrapper">
     <div :class="isDark ? 'game dark' : 'game'">
-      <div class="door_1" :class="{'active1': !isDark}"></div>
+      <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
+        <div v-if="firstDoorOpened" class="openedDoor"></div>
+      </div>
       <div class="door_2" :class="{'active2': !isDark}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
     </div>
@@ -14,8 +16,15 @@ export default {
   data(){
     return {
       isDark: true,
+      firstDoorOpened: false,
     }
   },
+  methods: {
+    openDoor(){
+      this.firstDoorOpened = !this.firstDoorOpened;
+    }
+  },
+
 }
 </script>
 
@@ -57,6 +66,13 @@ export default {
 .active1:hover {
   cursor: pointer;
   border: 2px solid deepskyblue;
+}
+
+.openedDoor {
+  width: 70%;
+  height: 100%;
+  background-color: #000;
+  box-shadow: 10px 0 5px -2px #888;
 }
 
 .door_2 {
