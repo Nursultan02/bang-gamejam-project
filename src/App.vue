@@ -1,6 +1,5 @@
 <template>
   <div style="height: 100vh">
-    <textCustom></textCustom>
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
     <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene v-if="level === 1"></FirstScene>
@@ -10,10 +9,9 @@
 <script>
 import StartPage from '@/components/startTemplate';
 import FirstScene from "@/components/FirstScene/FirstScene";
-import textCustom from "@/components/text";
 export default {
   name: 'App',
-  components: {FirstScene, StartPage, textCustom },
+  components: {FirstScene, StartPage },
   data() {
     return {
       level: 1,
