@@ -1,15 +1,35 @@
 <template>
-  <div>
-    <FirstScene></FirstScene>
+  <div style="height: 100vh">
+    <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
+    <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
+    <FirstScene v-if="level === 1"></FirstScene>
   </div>
 </template>
 
 <script>
-
+import StartPage from '@/components/startTemplate';
 import FirstScene from "@/components/FirstScene/FirstScene";
 export default {
   name: 'App',
-  components: {FirstScene},
+  components: {FirstScene, StartPage},
+  data() {
+    return {
+      level: null,
+      cutSceneShow: null,
+    }
+  },
+  mounted() {
+    let level = localStorage.getItem('levev');
+    this.level = parseInt(level);
+  },
+  methods: {
+    setScene(val) {
+      this.cutSceneShow = val;
+    },
+    setLevel(val) {
+      this.level = val
+    }
+  }
 }
 </script>
 
