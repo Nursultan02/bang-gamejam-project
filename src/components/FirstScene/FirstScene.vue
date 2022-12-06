@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <div :class="isDark ? 'game dark' : 'game'">
       <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
-        <div v-if="firstDoorOpened" class="openedDoor"></div>
+        <transition name="door"><div v-if="firstDoorOpened" class="openedDoor"><div class="top-shadow"></div> <div class="bottom-shadow"></div></div></transition>
       </div>
       <div class="door_2" :class="{'active2': !isDark}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
@@ -54,7 +54,7 @@ export default {
 .door_1 {
   position: absolute;
   left: 212px;
-  bottom: 172px;
+  bottom: 170px;
   width: 185px;
   height: 370px;
   border: 2px solid #000000;
@@ -69,22 +69,57 @@ export default {
 }
 
 .openedDoor {
+  position: relative;
   width: 70%;
   height: 100%;
   background-color: #000;
-  box-shadow: 10px 0 5px -2px #888;
+  box-shadow: 10px 0 5px -2px #363636;
+
+}
+
+.top-shadow {
+  position: absolute;
+  top: 0;
+  right: -55px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #000;
+  border-right: 55px solid transparent;
+}
+
+.bottom-shadow {
+  position: absolute;
+  bottom: 0;
+  right: -55px;
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #000;
+  border-right: 55px solid transparent;
 }
 
 .door_2 {
   position: absolute;
   right: 180px;
-  bottom: 172px;
+  bottom: 170px;
   width: 185px;
   height: 370px;
   border: 2px solid #000000;
   z-index: 1000;
 
   transition: .15s ease-in-out;
+}
+
+.door-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.door-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.door-enter-from,
+.door-leave-to {
+  opacity: 0;
 }
 
 .active2:hover {
@@ -95,7 +130,7 @@ export default {
 .lamp {
   position: absolute;
   top: 80px;
-  left: 545px;
+  left: 540px;
   width: 30px;
   height: 30px;
   border-radius: 100%;
