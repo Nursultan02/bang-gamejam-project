@@ -1,8 +1,8 @@
 <template>
   <div class="main-wrapper">
     <div :class="isDark ? 'game dark' : 'game'">
-      <div class="door_1"></div>
-      <div class="door_2"></div>
+      <div class="door_1" :class="{'active1': !isDark}"></div>
+      <div class="door_2" :class="{'active2': !isDark}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default {
   transition: .15s ease-in-out;
 }
 
-.door_1:hover {
+.active1:hover {
   cursor: pointer;
   border: 2px solid deepskyblue;
 }
@@ -71,7 +71,7 @@ export default {
   transition: .15s ease-in-out;
 }
 
-.door_2:hover {
+.active2:hover {
   cursor: pointer;
   border: 2px solid deepskyblue;
 }

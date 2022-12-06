@@ -14,13 +14,15 @@ export default {
   components: {FirstScene, StartPage},
   data() {
     return {
-      level: null,
-      cutSceneShow: null,
+      level: 1,
+      cutSceneShow: 2,
     }
   },
   mounted() {
-    let level = localStorage.getItem('levev');
-    this.level = parseInt(level);
+    let level = localStorage.getItem('level');
+    if(level) {
+      this.level = parseInt(level);
+    }
   },
   methods: {
     setScene(val) {
