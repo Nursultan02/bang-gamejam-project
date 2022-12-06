@@ -3,18 +3,24 @@
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
     <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene v-if="level === 1"></FirstScene>
+    <SecondScene @setLevel="setLevel" v-if="level === 2"></SecondScene>
+    <ThirdScene v-if="level === 3"></ThirdScene>
+    <FourthScene v-if="level === 4"></FourthScene>
   </div>
 </template>
 
 <script>
 import StartPage from '@/components/startTemplate';
 import FirstScene from "@/components/FirstScene/FirstScene";
+import SecondScene from "@/components/SecondScene/SecondScene";
+import ThirdScene from "@/components/ThirdScene/ThirdScene";
+import FourthScene from "@/components/FourthScene/FourthScene";
 export default {
   name: 'App',
-  components: {FirstScene, StartPage },
+  components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage },
   data() {
     return {
-      level: 1,
+      level: 2,
       cutSceneShow: 2,
     }
   },
@@ -30,7 +36,7 @@ export default {
     },
     setLevel(val) {
       this.level = val
-    }
+    },
   }
 }
 </script>
