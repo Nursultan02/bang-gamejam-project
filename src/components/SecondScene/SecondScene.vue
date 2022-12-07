@@ -91,6 +91,9 @@ export default {
       canOpen: false,
     };
   },
+  mounted() {
+    this.$emit("changeCredits", 'Какой то текст который потом будет добавлен')
+  },
   methods: {
     putTheEye(){
       this.canOpen = !this.canOpen;

@@ -81,7 +81,7 @@ export default {
   @apply ml-0 mr-auto;
   letter-spacing: .1em; /* Adjust as needed */
   animation: typing 4.5s steps(40, end),
-  blink-caret .75s step-end infinite;
+  blink-caret .75s step-end ;
 }
 
 /* The typing effect */
@@ -100,7 +100,10 @@ export default {
     border-color: transparent
   }
   50% {
-    @apply border-gray-600;
+    @apply border-0 border-r border-gray-600;
+  }
+  100% {
+    @apply border-0
   }
 }
 </style>

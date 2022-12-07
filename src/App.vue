@@ -11,7 +11,7 @@
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
     <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel" v-if="level === 1"></FirstScene>
-    <SecondScene @setLevel="setLevel" v-if="level === 2"></SecondScene>
+    <SecondScene @changeCredits="changeCredits" @setLevel="setLevel" v-if="level === 2"></SecondScene>
     <ThirdScene v-if="level === 3"></ThirdScene>
     <FourthScene v-if="level === 4"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px">
@@ -37,7 +37,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom },
   data() {
     return {
-      level: 1,
+      level: 2,
       cutSceneShow: 2,
       elements: [{}, {}, {}],
       renderReload: 1,
@@ -103,8 +103,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #000;
-  /*background: rgb(87,0,0);*/
-  /*background: linear-gradient(90deg, rgba(87,0,0,1) 0%, rgba(220,0,255,1) 48%, rgba(29,10,24,1) 90%);*/
 }
 
 .bounce-enter-active {
