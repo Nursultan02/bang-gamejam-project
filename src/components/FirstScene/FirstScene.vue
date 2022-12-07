@@ -13,7 +13,7 @@
       <div @click="isDark = !isDark" class="lamp"></div>
     </div>
     <div class="absolute bottom-10 zText">
-      <textCustom text="Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек"></textCustom>
+      <textCustom :showText="showText" text="Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек"></textCustom>
     </div>
   </div>
 </template>
@@ -27,7 +27,17 @@ export default {
     return {
       isDark: true,
       firstDoorOpened: false,
+      showText: false,
+      showTextTimeOut: null
     }
+  },
+  mounted() {
+    this.showTextTimeOut = setTimeout(()=> {
+      this.showText = false
+    }, 5000)
+  },
+  beforeDestroy() {
+    clearTimeout(this.showTextTimeOut)
   },
   components: {
     textCustom

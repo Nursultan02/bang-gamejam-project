@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="text text-gray-700 font-medium">
-    {{text}}
+    <span v-show="showText">{{text}}</span>
   </div>
 </div>
 </template>
@@ -22,6 +22,7 @@ export default {
   name: "textCustom",
   props: {
     text: String,
+    showText: Boolean
   },
   data() {
     return {
@@ -48,7 +49,7 @@ export default {
   @apply border border-solid border-gray-600 flex justify-center items-center p-2;
 }
 .box-container{
-  @apply flex border-4 border-solid border-gray-700;
+  @apply flex border-4 border-solid border-gray-700 w-full flex-grow;
   background-color: #CDB7A4;
 }
 
