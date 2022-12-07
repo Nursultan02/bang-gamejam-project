@@ -3,8 +3,8 @@
   <div class="game">
     <div @click="putTheEye" class="glass"></div>
     <div :class="canOpen ? 'door_1 active' : 'door_1'"></div>
-    <div @click="$emit('setLevel', 3)" class="thirdScene"></div>
-    <div @click="$emit('setLevel', 4)" class="fourthScene"></div>
+    <div @click="$emit('setLevel', 3)" class="thirdScene hover: cursor-pointer"></div>
+    <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>
   </div>
 </div>
 </template>
@@ -41,7 +41,7 @@ export default {
   border: 5px solid #fff;
   min-width: 1080px;
   min-height: 720px;
-  background-image: url("../../assets/images/second-scene-bg.svg");
+  background-image: url("../../assets/images/second-scene-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -75,7 +75,7 @@ export default {
 }
 
 .glass:hover {
-  cursor: pointer;
+  cursor: grab;
 }
 
 .thirdScene {
