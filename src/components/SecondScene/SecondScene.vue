@@ -5,79 +5,10 @@
     <div :class="canOpen ? 'door_1 active' : 'door_1'"></div>
     <div @click="$emit('setLevel', 3)" class="thirdScene hover: cursor-pointer"></div>
     <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>
-    <div class="star-1"></div>
-    <div class="star-2"></div>
-    <div class="star-3"></div>
-    <div class="star-4"></div>
-    <div class="star-5"></div>
-    <div class="star-6"></div>
-
-    <div class="star-7"></div>
-    <div class="star-8"></div>
-    <div class="star-9"></div>
-    <div class="star-10"></div>
-    <div class="star-11"></div>
-    <div class="star-12"></div>
-
-    <div class="star-13"></div>
-    <div class="star-14"></div>
-    <div class="star-15"></div>
-    <div class="star-16"></div>
-    <div class="star-17"></div>
-    <div class="star-18"></div>
-
+    <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
+      <div class="particle" v-for="i in 101" :key="i"></div>
     </div>
   </div>
 </div>
