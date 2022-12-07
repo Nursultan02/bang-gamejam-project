@@ -1,6 +1,8 @@
 <template>
-  <div class="main-wrapper">
-    <div :class="isDark ? 'game dark' : 'game'">
+  <div class="main-wrapper" :style="`cursor: ${cursorImage ? `url(${cursorImage}) 20 20, pointer !important` :  'default'}`">
+    <img @click="displayNote = false" v-if="displayNote" class=" w-72 h-96 fixed top-5"
+         src="@/assets/images/openedNote.png" alt="" style="opacity: 1; z-index: 4000">
+    <div :class="[isDark ? 'game dark' : 'game']" :style="`background-image: url(${bgImage})`">
       <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
         <transition name="door">
           <div v-if="firstDoorOpened" class="openedDoor">
@@ -9,11 +11,21 @@
           </div>
         </transition>
       </div>
-      <div class="door_2" :class="{'active2': !isDark}"></div>
+      <div class="sandBox" @click="openBox"></div>
+      <div class="dresser cursor-help relative" @click="toggleDresser">
+        <img v-if="showOpenedDresser" src="@/assets/images/openedDresser.png" alt="">
+        <img v-if="showNote" @click="startReadNote" src="@/assets/images/note.png" alt="" class="absolute w-12 h-12"
+             style="transition: all 5s; z-index: 4000"
+             :style="`top: ${yLocation}px;`">
+      </div>
+      <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
     </div>
-    <div class="absolute bottom-10 zText">
-      <textCustom :showText="showText" text="Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек"></textCustom>
+    <div class="absolute bottom-6 zText" style="min-width: 1080px">
+      <textCustom :key="renderReload" :showText="showText"
+                  @changeCursor="changeCursor"
+                  :elements="elements"
+                  :text="text"></textCustom>
     </div>
   </div>
 </template>
@@ -27,14 +39,41 @@ export default {
     return {
       isDark: true,
       firstDoorOpened: false,
-      showText: false,
-      showTextTimeOut: null
+      showText: true,
+      showTextTimeOut: null,
+      secondDoorActive: false,
+      downing: null,
+      yLocation: 0,
+      showOpenedDresser: false,
+      startDownAction: false,
+      displayNote: false,
+      openedBox: false,
+      noteReaded: false,
+      imagePath: null,
+      inventar: [],
+      elements: [{}, {}, {}],
+      showNote: false,
+      cursorImage: null,
+      renderReload: 1,
+      text: 'Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек'
+    }
+  },
+  computed: {
+    bgImage() {
+      return this.openedBox ? require('@/assets/images/openedBoxBG.png') : require('@/assets/images/first-scene-bg.png');
     }
   },
   mounted() {
-    this.showTextTimeOut = setTimeout(()=> {
+    this.showTextTimeOut = setTimeout(() => {
       this.showText = false
     }, 5000)
+    let file = require('@/assets/audios/background-music.mp3');
+    let audio = new Audio(file)
+    audio.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+    audio.play()
   },
   beforeDestroy() {
     clearTimeout(this.showTextTimeOut)
@@ -44,7 +83,52 @@ export default {
   },
   methods: {
     openDoor() {
-      this.firstDoorOpened = !this.firstDoorOpened;
+      if(this.cursorImage) {
+        this.firstDoorOpened = !this.firstDoorOpened;
+        this.$emit('setLevel', 2)
+      }
+    },
+    toggleDresser() {
+      if (!this.isDark) {
+        this.showOpenedDresser = true;
+        this.showNote = true;
+        this.yLocation = 140
+        this.startDownAction = true;
+      }
+    },
+    startReadNote() {
+      this.displayNote = true;
+      this.noteReaded = true;
+    },
+    changeText() {
+      clearTimeout(this.showTextTimeOut)
+      this.showText = true;
+      this.text = 'Бұл сыртқа шығатын есік. Жабық тұрған секілді. Басқа шығатын жер табу керек.';
+      this.showTextTimeOut(()=> {
+        this.showText = false;
+      }, 3000)
+    },
+    openBox() {
+      if(this.noteReaded) {
+        this.openedBox = true;
+
+        this.elements[0] = {
+          id: 1,
+          image: require('@/assets/images/keys/key1.png'),
+          type: 'key'
+        }
+        this.renderReload++
+      }
+    },
+    addFirstPage() {
+      this.elements[1] = {
+        id: 2,
+        image: require('@/assets/images/note.png'),
+      }
+      this.renderReload++;
+    },
+    changeCursor(image) {
+      this.cursorImage = image;
     }
   },
 
@@ -68,7 +152,6 @@ export default {
   min-width: 1080px;
   min-height: 720px;
   overflow: hidden;
-  background-image: url("../../assets/images/first-scene-bg.jfif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -88,7 +171,7 @@ export default {
 }
 
 .active1:hover {
-  cursor: pointer;
+  /*cursor: pointer;*/
   border: 2px solid deepskyblue;
 }
 
@@ -131,6 +214,8 @@ export default {
   z-index: 1000;
 
   transition: .15s ease-in-out;
+  cursor: not-allowed;
+
 }
 
 .door-enter-active {
@@ -144,11 +229,6 @@ export default {
 .door-enter-from,
 .door-leave-to {
   opacity: 0;
-}
-
-.active2:hover {
-  cursor: pointer;
-  border: 2px solid deepskyblue;
 }
 
 .lamp {
@@ -170,5 +250,23 @@ export default {
 
 .dark {
   opacity: 0.3;
+}
+
+.dresser {
+  width: 140px;
+  height: 168px;
+  position: absolute;
+  bottom: 180px;
+  left: 482px;
+  z-index: 3000
+}
+
+.sandBox {
+  position: absolute;
+  width: 120px;
+  height: 70px;
+  top: 310px;
+  right: 450px;
+  border: 0;
 }
 </style>
