@@ -26,6 +26,59 @@
     <div class="star-17"></div>
     <div class="star-18"></div>
 
+
+    <div class="water_bulking">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
   </div>
 </div>
 </template>
@@ -305,5 +358,245 @@ export default {
   position: absolute;
   top: 145px;
   right: 0;
+}
+
+.water_bulking {
+  font-size: 5px;
+  opacity: 0.4;
+  filter: blur(0.02em);
+  -webkit-filter: blur(0.02em);
+  position: absolute;
+  top: 185px;
+  left: 532px;
+  width: 20px;
+  height: 20px;
+
+  transition: all 0.2s;
+}
+
+.particle {
+  animation: rise 1.5s ease-in-out infinite;
+  background-image: radial-gradient(#c0c0c0 20%, rgba(255, 80, 0, 0) 70%);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  width: 5em;
+  height: 5em;
+}
+.particle:nth-of-type(1) {
+  animation-delay: 0.4747584992s;
+  left: calc((10% - 5em) * 0);
+}
+.particle:nth-of-type(2) {
+  animation-delay: 0.1285312199s;
+  left: calc((10% - 5em) * 0.02);
+}
+.particle:nth-of-type(3) {
+  animation-delay: 0.3277711721s;
+  left: calc((10% - 5em) * 0.04);
+}
+.particle:nth-of-type(4) {
+  animation-delay: 0.8694147043s;
+  left: calc((10% - 5em) * 0.06);
+}
+.particle:nth-of-type(5) {
+  animation-delay: 0.341012885s;
+  left: calc((10% - 5em) * 0.08);
+}
+.particle:nth-of-type(6) {
+  animation-delay: 0.1819108914s;
+  left: calc((10% - 5em) * 0.1);
+}
+.particle:nth-of-type(7) {
+  animation-delay: 0.4552155287s;
+  left: calc((10% - 5em) * 0.12);
+}
+.particle:nth-of-type(8) {
+  animation-delay: 0.9992087792s;
+  left: calc((10% - 5em) * 0.14);
+}
+.particle:nth-of-type(9) {
+  animation-delay: 0.6589042582s;
+  left: calc((10% - 5em) * 0.16);
+}
+.particle:nth-of-type(10) {
+  animation-delay: 0.5667886593s;
+  left: calc((10% - 5em) * 0.18);
+}
+.particle:nth-of-type(11) {
+  animation-delay: 0.6377394676s;
+  left: calc((10% - 5em) * 0.2);
+}
+.particle:nth-of-type(12) {
+  animation-delay: 0.0588100113s;
+  left: calc((10% - 5em) * 0.22);
+}
+.particle:nth-of-type(13) {
+  animation-delay: 0.8967164081s;
+  left: calc((10% - 5em) * 0.24);
+}
+.particle:nth-of-type(14) {
+  animation-delay: 0.8934641475s;
+  left: calc((10% - 5em) * 0.26);
+}
+.particle:nth-of-type(15) {
+  animation-delay: 0.1477251067s;
+  left: calc((10% - 5em) * 0.28);
+}
+.particle:nth-of-type(16) {
+  animation-delay: 0.316645678s;
+  left: calc((10% - 5em) * 0.3);
+}
+.particle:nth-of-type(17) {
+  animation-delay: 0.4554398848s;
+  left: calc((10% - 5em) * 0.32);
+}
+.particle:nth-of-type(18) {
+  animation-delay: 0.2327872285s;
+  left: calc((10% - 5em) * 0.34);
+}
+.particle:nth-of-type(19) {
+  animation-delay: 0.1704135174s;
+  left: calc((10% - 5em) * 0.36);
+}
+.particle:nth-of-type(20) {
+  animation-delay: 0.4504881332s;
+  left: calc((10% - 5em) * 0.38);
+}
+.particle:nth-of-type(21) {
+  animation-delay: 0.3558069876s;
+  left: calc((10% - 5em) * 0.4);
+}
+.particle:nth-of-type(22) {
+  animation-delay: 0.6109724811s;
+  left: calc((10% - 5em) * 0.42);
+}
+.particle:nth-of-type(23) {
+  animation-delay: 0.4528510082s;
+  left: calc((10% - 5em) * 0.44);
+}
+.particle:nth-of-type(24) {
+  animation-delay: 0.9268736732s;
+  left: calc((10% - 5em) * 0.46);
+}
+.particle:nth-of-type(25) {
+  animation-delay: 0.7110786071s;
+  left: calc((10% - 5em) * 0.48);
+}
+.particle:nth-of-type(26) {
+  animation-delay: 0.7876004427s;
+  left: calc((10% - 5em) * 0.5);
+}
+.particle:nth-of-type(27) {
+  animation-delay: 0.5368552689s;
+  left: calc((10% - 5em) * 0.52);
+}
+.particle:nth-of-type(28) {
+  animation-delay: 0.9208490385s;
+  left: calc((10% - 5em) * 0.54);
+}
+.particle:nth-of-type(29) {
+  animation-delay: 0.4771952935s;
+  left: calc((10% - 5em) * 0.56);
+}
+.particle:nth-of-type(30) {
+  animation-delay: 0.9255196027s;
+  left: calc((10% - 5em) * 0.58);
+}
+.particle:nth-of-type(31) {
+  animation-delay: 0.2284569704s;
+  left: calc((10% - 5em) * 0.6);
+}
+.particle:nth-of-type(32) {
+  animation-delay: 0.4962997814s;
+  left: calc((10% - 5em) * 0.62);
+}
+.particle:nth-of-type(33) {
+  animation-delay: 0.1845312734s;
+  left: calc((10% - 5em) * 0.64);
+}
+.particle:nth-of-type(34) {
+  animation-delay: 0.0789857947s;
+  left: calc((10% - 5em) * 0.66);
+}
+.particle:nth-of-type(35) {
+  animation-delay: 0.897189747s;
+  left: calc((10% - 5em) * 0.68);
+}
+.particle:nth-of-type(36) {
+  animation-delay: 0.4626522359s;
+  left: calc((10% - 5em) * 0.7);
+}
+.particle:nth-of-type(37) {
+  animation-delay: 0.2561782919s;
+  left: calc((10% - 5em) * 0.72);
+}
+.particle:nth-of-type(38) {
+  animation-delay: 0.6752678883s;
+  left: calc((10% - 5em) * 0.74);
+}
+.particle:nth-of-type(39) {
+  animation-delay: 0.5099427207s;
+  left: calc((10% - 5em) * 0.76);
+}
+.particle:nth-of-type(40) {
+  animation-delay: 0.0695083625s;
+  left: calc((10% - 5em) * 0.78);
+}
+.particle:nth-of-type(41) {
+  animation-delay: 0.4876069257s;
+  left: calc((10% - 5em) * 0.8);
+}
+.particle:nth-of-type(42) {
+  animation-delay: 0.7284629228s;
+  left: calc((10% - 5em) * 0.82);
+}
+.particle:nth-of-type(43) {
+  animation-delay: 0.9935912053s;
+  left: calc((10% - 5em) * 0.84);
+}
+.particle:nth-of-type(44) {
+  animation-delay: 0.2113934282s;
+  left: calc((10% - 5em) * 0.86);
+}
+.particle:nth-of-type(45) {
+  animation-delay: 0.7668240288s;
+  left: calc((10% - 5em) * 0.88);
+}
+.particle:nth-of-type(46) {
+  animation-delay: 0.1482300255s;
+  left: calc((10% - 5em) * 0.9);
+}
+.particle:nth-of-type(47) {
+  animation-delay: 0.9326473524s;
+  left: calc((10% - 5em) * 0.92);
+}
+.particle:nth-of-type(48) {
+  animation-delay: 0.3159385877s;
+  left: calc((10% - 5em) * 0.94);
+}
+.particle:nth-of-type(49) {
+  animation-delay: 0.4091354462s;
+  left: calc((10% - 5em) * 0.96);
+}
+.particle:nth-of-type(50) {
+  animation-delay: 0.4753228323s;
+  left: calc((10% - 5em) * 0.98);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-5em) scale(0);
+  }
 }
 </style>
