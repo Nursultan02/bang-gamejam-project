@@ -59,11 +59,22 @@
         <div class="particle"></div>
       </div>
 
-      <div @click="handleKeyClick(1)" class="key-1"></div>
-      <div @click="handleKeyClick(2)" class="key-2"></div>
-      <div @click="handleKeyClick(3)" class="key-3"></div>
-      <div @click="handleKeyClick(4)" class="key-4"></div>
+      <div @click="handleKeyClick(1)" class="key-1" :class="showPromts ? 'active-key' : ''"></div>
+      <div @click="handleKeyClick(2)" class="key-2" :class="showPromts ? 'active-key' : ''"></div>
+      <div @click="handleKeyClick(3)" class="key-3" :class="showPromts ? 'active-key' : ''"></div>
+      <div @click="handleKeyClick(4)" class="key-4" :class="showPromts ? 'active-key' : ''"></div>
 
+      <div v-if="!showPromts" class="answer-hider">
+      </div>
+
+      <div @click="takeEye" class="lamp" :class="!showPromts ? 'lamp-animating' : ''"></div>
+      <div class="eye"></div>
+      <div class="claw1"></div>
+      <div class="claw2"></div>
+      <div class="claw3"></div>
+      <div class="claw4"></div>
+      <div class="claw5"></div>
+      <div class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
     </div>
   </div>
 </template>
@@ -76,6 +87,8 @@ export default {
       correctCombination: [3,2,1,4,1],
       typeCombination: [],
       fireSize: "14px",
+      showPromts: false,
+      giveEye: false,
     };
   },
   mounted(){
@@ -84,8 +97,13 @@ export default {
     audio1.play();
   },
   methods: {
+    takeEye(){
+      this.showPromts = true;
+    },
     handleKeyClick(key){
-
+      if(!this.showPromts) {
+        return
+      }
 
       this.typeCombination.push(key);
       let len = this.typeCombination.length;
@@ -125,6 +143,7 @@ export default {
       if(len === 5) {
         if(this.correctCombination[4] === key){
           this.fireSize = '3px';
+          this.giveEye = true;
           console.log('DONE!')
         }else {
           this.fireSize = '14px';
@@ -178,51 +197,214 @@ export default {
   position: relative;
 }
 
+.eye-element {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-image: url("../../assets/images/third-scene-eye.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+}
+
+.eye-element-falling {
+  opacity: 1;
+  animation: eye-falling 1.5s ease;
+  top: 540px;
+  right: 180px;
+}
+
+@keyframes eye-falling {
+  0%   {top: 370px; width: 30px; height: 30px;}
+  25%   {top: 540px;}
+  50%  {top: 510px; right: 170px;}
+  75%   {top: 540px; right: 175px;}
+  100% {top: 540px; right: 180px; transform: rotate(-720deg);}
+}
+
+.eye {
+  position: absolute;
+  top: 134px;
+  right: 164px;
+  background-color: #B87333 ;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+
+  animation: claw_blicking 1s infinite;
+}
+
+.claw1 {
+  position: absolute;
+  top: 10px;
+  right: 169px;
+  width: 3px;
+  height: 20px;
+  border-radius: 50% 50% 30% 30%;
+  background-color: #B87333;
+  transform: rotate(-20deg);
+
+  animation: claw_blicking 1s infinite;
+}
+
+@keyframes claw_blicking {
+  0%   {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.claw2 {
+  position: absolute;
+  top: 7px;
+  right: 141px;
+  width: 3px;
+  height: 20px;
+  border-radius: 50% 50% 30% 30%;
+  background-color: #B87333;
+  transform: rotate(22deg);
+
+  animation: claw_blicking 1s infinite;
+}
+
+.claw3 {
+  position: absolute;
+  top: 13px;
+  right: 120px;
+  width: 3px;
+  height: 20px;
+  border-radius: 50% 50% 30% 30%;
+  background-color: #B87333;
+  transform: rotate(40deg);
+
+  animation: claw_blicking 1s infinite;
+}
+
+.claw4 {
+  position: absolute;
+  top: 36px;
+  right: 112px;
+  width: 3px;
+  height: 17px;
+  border-radius: 50% 50% 30% 30%;
+  background-color: #B87333;
+  transform: rotate(43deg);
+
+  animation: claw_blicking 1s infinite;
+}
+
+.claw5 {
+  position: absolute;
+  top: 86px;
+  right: 185px;
+  width: 3px;
+  height: 14px;
+  border-radius: 50% 50% 30% 30%;
+  background-color: #B87333;
+  transform: rotate(-130deg);
+
+  animation: claw_blicking 1s infinite;
+}
+
+.lamp {
+  position: absolute;
+  top: 162px;
+  right: 266px;
+  width: 30px;
+  height: 89px;
+  cursor: pointer;
+  background-image: url("../../assets/images/third-scene-lamp.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: all .25s ease-in-out;
+}
+
+.lamp-animating:hover {
+  animation: lamp_animation .2s infinite;
+}
+
+@keyframes lamp_animation {
+0%   {transform: rotate(5deg);}
+50%  {transform: rotate(0deg);}
+100% {transform: rotate(-5deg);}
+}
+
+.lamp-animation {
+  -webkit-animation-name: cssAnimation;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes cssAnimation {
+  from {
+    transform: rotate(0deg) scale(1) skew(0deg) translate(100px);
+  }
+  to {
+    transform: rotate(0deg) scale(2) skew(0deg) translate(100px);
+  }
+}
+
+.answer-hider {
+  position: absolute;
+  top: 236px;
+  left: 464px;
+  width: 34px;
+  height: 249.5px;
+  background-color: #30304e;
+}
+
 .key-1 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid red;
   position: absolute;
   top: 260px;
   right: 218px;
   cursor: pointer;
+  background-color: #19315a;
 }
 
 .key-2 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid red;
   position: absolute;
   top: 260px;
   right: 167px;
   cursor: pointer;
   caret-color: red;
+  background-color: #19315a;
 }
 
 .key-3 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid red;
   position: absolute;
   top: 260px;
   right: 115px;
   cursor: pointer;
   caret-color: red;
+  background-color: #19315a;
 }
 
 .key-4 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid red;
   position: absolute;
   top: 260px;
   right: 62px;
   cursor: pointer;
   caret-color: red;
+  background-color: #19315a;
+}
+
+.active-key {
+  opacity: 0;
 }
 
 /*body {*/
