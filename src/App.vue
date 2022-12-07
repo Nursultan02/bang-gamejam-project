@@ -20,7 +20,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage },
   data() {
     return {
-      level: 1,
+      level: 2,
       cutSceneShow: 2,
     }
   },

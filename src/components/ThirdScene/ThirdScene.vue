@@ -330,22 +330,22 @@ export default {
 100% {transform: rotate(-5deg);}
 }
 
-.lamp-animation {
-  -webkit-animation-name: cssAnimation;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-fill-mode: forwards;
-}
+/*.lamp-animation {*/
+/*  -webkit-animation-name: cssAnimation;*/
+/*  -webkit-animation-duration: 3s;*/
+/*  -webkit-animation-iteration-count: 1;*/
+/*  -webkit-animation-timing-function: ease;*/
+/*  -webkit-animation-fill-mode: forwards;*/
+/*}*/
 
-@-webkit-keyframes cssAnimation {
-  from {
-    transform: rotate(0deg) scale(1) skew(0deg) translate(100px);
-  }
-  to {
-    transform: rotate(0deg) scale(2) skew(0deg) translate(100px);
-  }
-}
+/*@-webkit-keyframes cssAnimation {*/
+/*  from {*/
+/*    transform: rotate(0deg) scale(1) skew(0deg) translate(100px);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(0deg) scale(2) skew(0deg) translate(100px);*/
+/*  }*/
+/*}*/
 
 .answer-hider {
   position: absolute;
