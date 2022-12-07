@@ -39,8 +39,9 @@ export default {
       if(element.type === 'key') {
         this.$emit('changeCursor', element.image)
       }
-      if(element.type === 'text') {
-        this.$emit('showContext', element.image);
+      if(element.type === 'note') {
+        console.log('we are here')
+        this.$emit('showContext', element.full_image);
       }
     }
   }

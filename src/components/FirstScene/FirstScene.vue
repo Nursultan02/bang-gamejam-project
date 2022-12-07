@@ -1,7 +1,5 @@
 <template>
-  <div class="main-wrapper" :style="`cursor: ${cursorImage ? `url(${cursorImage}) 20 20, pointer !important` :  'default'}`">
-    <img @click="displayNote = false" v-if="displayNote" class=" w-72 h-96 fixed top-5"
-         src="@/assets/images/openedNote.png" alt="" style="opacity: 1; z-index: 4000">
+  <div class="main-wrapper">
     <div :class="[isDark ? 'game dark' : 'game']" :style="`background-image: url(${bgImage})`">
       <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
         <transition name="door">
@@ -14,27 +12,25 @@
       <div class="sandBox" @click="openBox"></div>
       <div class="dresser cursor-help relative" @click="toggleDresser">
         <img v-if="showOpenedDresser" src="@/assets/images/openedDresser.png" alt="">
-        <img v-if="showNote" @click="startReadNote" src="@/assets/images/note.png" alt="" class="absolute w-12 h-12"
-             style="transition: all 5s; z-index: 4000"
-             :style="`top: ${yLocation}px;`">
+        <Transition name="slide-move">
+          <img v-if="showNote && !noteReaded" @click="startReadNote" src="@/assets/images/note.png" alt=""
+               class="w-12 h-12"
+               style="z-index: 4000">
+        </Transition>
       </div>
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
-    </div>
-    <div class="absolute bottom-6 zText" style="min-width: 1080px">
-      <textCustom :key="renderReload" :showText="showText"
-                  @changeCursor="changeCursor"
-                  :elements="elements"
-                  :text="text"></textCustom>
     </div>
   </div>
 </template>
 
 <script>
-import textCustom from '@/components/text'
 
 export default {
   name: "FirstScene",
+  props: {
+    keyHanded: String,
+  },
   data() {
     return {
       isDark: true,
@@ -46,7 +42,7 @@ export default {
       yLocation: 0,
       showOpenedDresser: false,
       startDownAction: false,
-      displayNote: false,
+      image: null,
       openedBox: false,
       noteReaded: false,
       imagePath: null,
@@ -54,8 +50,6 @@ export default {
       elements: [{}, {}, {}],
       showNote: false,
       cursorImage: null,
-      renderReload: 1,
-      text: 'Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек'
     }
   },
   computed: {
@@ -64,26 +58,26 @@ export default {
     }
   },
   mounted() {
+    this.$emit('changeCredits', 'Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек')
     this.showTextTimeOut = setTimeout(() => {
       this.showText = false
+      this.$emit('showTextToggle', false);
     }, 5000)
     let file = require('@/assets/audios/background-music.mp3');
     let audio = new Audio(file)
-    audio.addEventListener('ended', function() {
+    audio.addEventListener('ended', function () {
       this.currentTime = 0;
       this.play();
     }, false);
     audio.play()
+
   },
   beforeDestroy() {
     clearTimeout(this.showTextTimeOut)
   },
-  components: {
-    textCustom
-  },
   methods: {
     openDoor() {
-      if(this.cursorImage) {
+      if (this.keyHanded) {
         this.firstDoorOpened = !this.firstDoorOpened;
         this.$emit('setLevel', 2)
       }
@@ -92,43 +86,56 @@ export default {
       if (!this.isDark) {
         this.showOpenedDresser = true;
         this.showNote = true;
-        this.yLocation = 140
         this.startDownAction = true;
       }
     },
     startReadNote() {
       this.displayNote = true;
+      this.$emit('displayNoteToggle', true);
+      this.$emit('changeNoteImage', require('@/assets/images/openedNote.png'))
+      this.addFirstPage();
       this.noteReaded = true;
     },
     changeText() {
       clearTimeout(this.showTextTimeOut)
       this.showText = true;
-      this.text = 'Бұл сыртқа шығатын есік. Жабық тұрған секілді. Басқа шығатын жер табу керек.';
-      this.showTextTimeOut(()=> {
+      this.$emit('changeCredits', 'Бұл сыртқа шығатын есік. Жабық тұрған секілді. Басқа шығатын жер табу керек.')
+      this.showTextTimeOut(() => {
         this.showText = false;
       }, 3000)
     },
     openBox() {
-      if(this.noteReaded) {
+      if (this.noteReaded) {
         this.openedBox = true;
-
-        this.elements[0] = {
-          id: 1,
-          image: require('@/assets/images/keys/key1.png'),
-          type: 'key'
-        }
+        this.$emit('setElementInInventar', {
+          index: 1, payload: {
+            id: 1,
+            image: require('@/assets/images/keys/key1.png'),
+            type: 'key'
+          }
+        })
         this.renderReload++
       }
     },
     addFirstPage() {
-      this.elements[1] = {
-        id: 2,
-        image: require('@/assets/images/note.png'),
-      }
-      this.renderReload++;
+      this.$emit('setElementInInventar', {
+        index: 0, payload:{
+          id: 2,
+          image: require('@/assets/images/note.png'),
+          full_image: require('@/assets/images/openedNote.png'),
+          type: 'note'
+        }
+      })
+    },
+    showContext(image) {
+      this.image = image;
+      this.$emit('showContext', image)
+      this.displayNote = true;
     },
     changeCursor(image) {
-      this.cursorImage = image;
+      console.log('we are here')
+      this.cursorImage = image
+      this.$emit('changeCursor', image);
     }
   },
 
@@ -136,16 +143,6 @@ export default {
 </script>
 
 <style scoped>
-.main-wrapper {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000;
-  /*background: rgb(87,0,0);*/
-  /*background: linear-gradient(90deg, rgba(87,0,0,1) 0%, rgba(220,0,255,1) 48%, rgba(29,10,24,1) 90%);*/
-}
 
 .game {
   border: 5px solid #fff;
@@ -268,5 +265,44 @@ export default {
   top: 310px;
   right: 450px;
   border: 0;
+}
+
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+.slide-move-enter-active {
+  opacity: 1;
+  transition: all 3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-move-leave-active {
+  opacity: 0;
+  transition: all 2s;
+}
+
+.slide-move-enter-from,
+.slide-move-leave-to {
+  opacity: 1;
+  transform: translateY(10px);
 }
 </style>
