@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrapper">
     <div class="game">
-      <div class="kid_bed" :class="{'kid_bed_moving': !showTree}" @click="showMagicTree"></div>
+      <div @mouseenter="mouseEnterOnBed" class="kid_bed" :class="{'kid_bed_moving': !showTree}" @click="showMagicTree"></div>
 
       <div  class="magic_tree" :class="{'magic_tree_showing': showTree}"></div>
 
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "FourthScene",
   data(){
@@ -40,6 +42,13 @@ export default {
     }
   },
   methods: {
+    mouseEnterOnBed(){
+      if(!this.showTree){
+        let file = require('@/assets/audios/bed_shaking_sound.mp3')
+        let lamp_audio = new Audio(file)
+        lamp_audio.play();
+      }
+    },
     goBack(){
       this.$emit("setLevel", 2);
     },
@@ -50,12 +59,18 @@ export default {
       setInterval(() => {
         this.birdOpened = !this.birdOpened;
       },1000)
+      let file = require('@/assets/audios/bird_sound.mp3')
+      let bird_audio = new Audio(file)
+      bird_audio.play();
       this.showNote = true;
     },
     reset() {
       this.typeCombination = [];
     },
     openFirstNote() {
+      let file = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file)
+      grab_audio.play();
       this.$emit('displayNoteToggle', true);
       this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedSecondNote.png'))
       this.$emit('setElementInInventar', {
@@ -68,6 +83,9 @@ export default {
       this.firstNoteReaded = true;
     },
     openSecondNote() {
+      let file = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file)
+      grab_audio.play();
       this.$emit('displayNoteToggle', true);
       this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedFirstNote.png'))
       this.$emit('setElementInInventar', {
@@ -84,6 +102,9 @@ export default {
       }
     },
     addLiver() {
+      let file = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file)
+      grab_audio.play();
       this.$emit('setElementInInventar', {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/FirstNote.png'),
@@ -102,6 +123,10 @@ export default {
       if (this.typeCombination.length === 6) {
         return
       }
+
+      let file = require('@/assets/audios/click_sound.mp3')
+      let click_audio = new Audio(file)
+      click_audio.play();
 
       this.typeCombination.push(key);
       let len = this.typeCombination.length;
@@ -129,9 +154,13 @@ export default {
 
         if(this.correctCombination[5] === key){
           console.log("WIN")
+          let file = require('@/assets/audios/door_open_sound.mp3')
+          let door_open_audio = new Audio(file)
+          door_open_audio.play();
           this.cupboardClosed = false;
           this.showSecondNote = true;
           this.showLiver = true;
+
         }else {
           this.reset();
         }
