@@ -157,7 +157,8 @@ export default {
       this.$emit('setElementInInventar', {
         index: 3, payload: {
           image: require("@/assets/images/third-scene-eye.png"),
-          type: 'eye'
+          type: 'eye',
+          id: 8
         }
       })
 
@@ -174,7 +175,8 @@ export default {
         index: 2, payload: {
           image: require('@/assets/images/ThirdScene/blueNote.png'),
           full_image: require('@/assets/images/ThirdScene/noteThirdScene.png'),
-          type: 'note'
+          type: 'note',
+          id: 9
         }
       })
       this.noteReaded = true;

@@ -4,7 +4,7 @@
     <Transition name="bounce">
       <div v-if="displayNote" class="fixed flex justify-center items-center"
            style="width: 100vw; height: 100vh; z-index: 6000000;     background-color: rgba(0, 0, 0, 0.8);">
-        <img @click="displayNote = false" class="h-96 -mt-8"
+        <img @click="displayNote = false" class="-mt-8"
              :src="noteImage" alt="" style="opacity: 1; z-index: 40000000000">
       </div>
     </Transition>
@@ -47,7 +47,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom},
   data() {
     return {
-      level: 2,
+      level: 1,
       cutSceneShow: 2,
       elements: [
         // {
@@ -142,11 +142,13 @@ export default {
         }
       }
     ,
-      setElementInInventar({payload})
-      {
-        this.elements.push(payload);
+      setElementInInventar({payload}) {
+        let index = this.elements.findIndex(k=> k.id === payload.id);
+        if(index === -1) {
+          this.elements.push(payload);
+          this.renderReload++
+        }
         console.log(this.elements)
-        this.renderReload++
       }
     ,
       resetCursor()

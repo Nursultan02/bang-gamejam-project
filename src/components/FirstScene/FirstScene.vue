@@ -128,7 +128,7 @@ export default {
     addFirstPage() {
       this.$emit('setElementInInventar', {
         index: 0, payload:{
-          id: 2,
+          id: 0,
           image: require('@/assets/images/note.png'),
           full_image: require('@/assets/images/openedNote.png'),
           type: 'note'

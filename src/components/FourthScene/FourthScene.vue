@@ -77,7 +77,8 @@ export default {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/FirstNote.png'),
           full_image: require('@/assets/images/fourthScene/openedSecondNote.png'),
-          type: 'note'
+          type: 'note',
+          id: 6
         }
       })
       this.firstNoteReaded = true;
@@ -92,7 +93,8 @@ export default {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/FirstNote.png'),
           full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
-          type: 'note'
+          type: 'note',
+          id: 7
         }
       })
       this.showSecondNote = false;
@@ -108,7 +110,8 @@ export default {
       this.$emit('setElementInInventar', {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/liver.png'),
-          type: 'key'
+          type: 'key',
+          id: 5
         }
       })
       this.showLiver = false;
