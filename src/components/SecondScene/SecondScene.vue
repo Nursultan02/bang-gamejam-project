@@ -77,17 +77,19 @@ export default {
       let file = require('@/assets/audios/glass_sound.mp3')
       let glass_audio = new Audio(file)
       glass_audio.play();
-      this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
       console.log(this.cursorImage);
       if(this.cursorType === 'eye') {
         this.finishType = 'horror'
         this.canOpen = !this.canOpen;
         this.$emit('resetCursor')
       }
-      if(this.cursorType === 'liver') {
+      else if(this.cursorType === 'liver') {
         this.finishType = 'nice'
         this.canOpen = !this.canOpen;
         this.$emit('resetCursor')
+      }
+      else {
+        this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
       }
       console.log(this.finish, this.cursorType);
     },
