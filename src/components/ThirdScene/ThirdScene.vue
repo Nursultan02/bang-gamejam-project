@@ -14,17 +14,17 @@
 
       <div @click="setShowPrompts" class="lamp" :class="{'lamp-animating': !showPromts}"></div>
       <div v-if="showNote && !noteReaded">
-        <img @click="startReadNote" src="@/assets/images/note.png" alt=""
+        <img @click="startReadNote" src="@/assets/images/ThirdScene/blueNote.png" alt=""
              class="note" :class="{'note-animation': showNote }"
         >
       </div>
-      <div class="eye"></div>
+      <div  class="eye"></div>
       <div class="claw1"></div>
       <div class="claw2"></div>
       <div class="claw3"></div>
       <div class="claw4"></div>
       <div class="claw5"></div>
-      <div @click="addToInventary" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
+      <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
     </div>
   </div>
 </template>
@@ -41,10 +41,11 @@ export default {
       giveEye: false,
       showNote: false,
       noteReaded: false,
-
+      showEye: true,
     };
   },
   mounted() {
+    this.$emit("changeCredits", 'Үй иесінің кабинеті секілді. Мұнда не бар екенін көрейік.')
     let file = require('@/assets/audios/third-scene-audio.mp3')
     let audio1 = new Audio(file)
     audio1.addEventListener('ended', function () {
@@ -127,17 +128,20 @@ export default {
           type: 'eye'
         }
       })
+
+      this.showEye = false;
     },
     startReadNote() {
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', require('@/assets/images/noteThirdScene.png'));
+      this.$emit('changeNoteImage', require('@/assets/images/ThirdScene/noteThirdScene.png'));
       this.$emit('setElementInInventar', {
         index: 2, payload: {
-          image: require('@/assets/images/note.png'),
-          full_image: require('@/assets/images/noteThirdScene.png'),
+          image: require('@/assets/images/ThirdScene/blueNote.png'),
+          full_image: require('@/assets/images/ThirdScene/noteThirdScene.png'),
           type: 'note'
         }
       })
+      this.noteReaded = true;
     }
   },
 }
