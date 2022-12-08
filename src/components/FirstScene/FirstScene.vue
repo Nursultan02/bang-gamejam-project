@@ -35,7 +35,6 @@ export default {
       isDark: true,
       firstDoorOpened: false,
       showText: true,
-      showTextTimeOut: null,
       secondDoorActive: false,
       downing: null,
       yLocation: 0,
@@ -58,10 +57,6 @@ export default {
   },
   mounted() {
     this.$emit('changeCredits', 'Мен қайдамын? Мынау қай жер…Қалай түстім мында? Жан-жақты қарап шығу керек')
-    this.showTextTimeOut = setTimeout(() => {
-      this.showText = false
-      this.$emit('showTextToggle', false);
-    }, 5000)
     let file = require('@/assets/audios/background-music.mp3');
     let audio = new Audio(file)
     audio.addEventListener('ended', function () {
@@ -70,9 +65,6 @@ export default {
     }, false);
     audio.play()
 
-  },
-  beforeDestroy() {
-    clearTimeout(this.showTextTimeOut)
   },
   methods: {
     openDoor() {
@@ -98,12 +90,7 @@ export default {
       this.noteReaded = true;
     },
     changeText() {
-      clearTimeout(this.showTextTimeOut)
-      this.showText = true;
       this.$emit('changeCredits', 'Бұл сыртқа шығатын есік. Жабық тұрған секілді. Басқа шығатын жер табу керек.')
-      this.showTextTimeOut(() => {
-        this.showText = false;
-      }, 3000)
     },
     openBox() {
       if (this.noteReaded) {

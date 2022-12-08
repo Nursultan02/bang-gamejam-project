@@ -2,7 +2,7 @@
 <div class="main-wrapper">
   <div class="game">
     <div @click="putTheEye" class="glass"></div>
-    <div :class="canOpen ? 'door_1 active' : 'door_1'"></div>
+    <div @click="openCentralDoor" :class="canOpen ? 'door_1 active' : 'door_1'"></div>
     <div @click="$emit('setLevel', 3)" class="thirdScene hover: cursor-pointer"></div>
     <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
@@ -23,13 +23,16 @@ export default {
     };
   },
   mounted() {
-    this.$emit("changeCredits", 'Какой то текст который потом будет добавлен')
     this.$emit('resetCursor');
   },
   methods: {
     putTheEye(){
+      this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
       this.canOpen = !this.canOpen;
     },
+    openCentralDoor() {
+      this.$emit('changeCredits', 'Оо... мына есіктен шыға алатын сияқтымын. Бірақ жабық тұр. Ашудың жолын іздеу керек.')
+    }
   },
 }
 </script>
