@@ -48,7 +48,7 @@ export default {
       typeCombination: [],
       fireSize: "14px",
       showPromts: false,
-      giveEye: true,
+      giveEye: false,
       showNote: false,
       noteReaded: false,
       showEye: true,
