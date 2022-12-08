@@ -2,9 +2,9 @@
 <div class="main-wrapper">
   <div class="game">
     <div @click="putTheEye" class="glass"></div>
-    <div @click="openCentralDoor" :class="canOpen ? 'door_1 active' : 'door_1'"></div>
-    <div @click="$emit('setLevel', 3)" class="thirdScene hover: cursor-pointer"></div>
-    <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>
+    <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
+    <div @click="openThirdScene" class="thirdScene hover: cursor-pointer"></div>
+    <div @click="openFourthScene" class="fourthScene hover: cursor-pointer"></div>
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "SecondScene",
   data(){
@@ -26,11 +28,33 @@ export default {
     this.$emit('resetCursor');
   },
   methods: {
+    openThirdScene(){
+      let file = require('@/assets/audios/stairs_sound.mp3')
+      let stairs_audio = new Audio(file)
+      stairs_audio.play();
+      setTimeout(() => {
+        this.$emit('setLevel', 3);
+      },2500)
+    },
+    openFourthScene(){
+      let file = require('@/assets/audios/stairs_sound.mp3')
+      let stairs_audio = new Audio(file)
+      stairs_audio.play();
+      setTimeout(() => {
+        this.$emit('setLevel', 4);
+      },2500)
+    },
     putTheEye(){
+      let file = require('@/assets/audios/glass_sound.mp3')
+      let glass_audio = new Audio(file)
+      glass_audio.play();
       this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
       this.canOpen = !this.canOpen;
     },
     openCentralDoor() {
+      let file = require('@/assets/audios/lock_door_sound.mp3')
+      let lock_door_audio = new Audio(file)
+      lock_door_audio.play();
       this.$emit('changeCredits', 'Оо... мына есіктен шыға алатын сияқтымын. Бірақ жабық тұр. Ашудың жолын іздеу керек.')
     }
   },
@@ -258,8 +282,6 @@ export default {
   z-index: 1000;
 
   transition: .15s ease-in-out;
-  cursor: pointer;
-
 }
 
 .active:hover {
