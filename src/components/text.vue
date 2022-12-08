@@ -1,12 +1,16 @@
 <template>
   <div class="zText box-container">
     <div class="invertar">
-      <div class="box" v-for="element in elements" :key="element.id">
-        <div
-            class="border-2 border-solid border-gray-800 p-2"
-             style="width: 100%; height: 100%; margin: auto; background-color: #F0D0B5">
-          <img @click="doAction(element)" :src="element.image" class="" alt="">
-        </div>
+      <div class="box">
+        <Swiper :slides-per-view="3"
+                :space-between="1">
+          <swiper-slide v-for="element in elements" :key="element.id">
+            <div class="border-2 border-solid border-gray-800 p-2"
+                 style="width: 100%; height: 100%; margin: auto; background-color: #F0D0B5">
+              <img @click="doAction(element)" :src="element.image" class="" alt="">
+            </div>
+          </swiper-slide>
+        </Swiper>
       </div>
 
     </div>
@@ -17,16 +21,21 @@
 </template>
 
 <script>
+import {Swiper, SwiperSlide} from 'swiper/vue'
+
+import 'swiper/css';
+
 export default {
   name: "textCustom",
   props: {
     text: String,
     showText: Boolean,
     elements: {
-      default: ()=> [{}, {}, {}],
+      default: () => [{}, {}, {}],
       type: Array
     }
   },
+  components: {Swiper, SwiperSlide},
   data() {
     return {
       textFromParent: ''
@@ -36,12 +45,15 @@ export default {
   },
   methods: {
     doAction(element) {
-      if(element.type === 'key') {
+      if (element.type === 'key') {
         this.$emit('changeCursor', element.image)
       }
-      if(element.type === 'note') {
+      if (element.type === 'note') {
         console.log('we are here')
         this.$emit('showContext', element.full_image);
+      }
+      if (element.type === 'key') {
+        this.$emit('changeCursor', element.image);
       }
     }
   }
@@ -81,7 +93,7 @@ export default {
   @apply ml-0 mr-auto;
   letter-spacing: .1em; /* Adjust as needed */
   animation: typing 4.5s steps(40, end),
-  blink-caret .75s step-end ;
+  blink-caret .75s step-end;
 }
 
 /* The typing effect */

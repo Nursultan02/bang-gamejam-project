@@ -7,7 +7,7 @@
       <!--      <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>-->
 
       <div class="fire" :style="fireStyle">
-        <div class="particle" v-for="i in 101" :key="i"></div>
+        <div class="particle" v-for="i in 50" :key="i"></div>
       </div>
 
       <div @click="handleKeyClick(1)" class="key-1" :class="showPromts ? 'active-key' : ''"></div>
@@ -118,7 +118,8 @@ export default {
     addToInventary() {
       this.$emit('setElementInInventar', {
         index: 2, payload: {
-          image: require("@/assets/images/third-scene-eye.png")
+          image: require("@/assets/images/third-scene-eye.png"),
+          type: 'eye'
         }
       })
     }
