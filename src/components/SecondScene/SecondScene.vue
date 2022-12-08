@@ -41,9 +41,9 @@ export default {
       let file = require('@/assets/audios/stairs_sound.mp3')
       let stairs_audio = new Audio(file)
       stairs_audio.play();
-      setTimeout(() => {
+      stairs_audio.addEventListener('ended', ()=> {
         this.$emit('setLevel', 3);
-      },2500)
+      })
     },
     openFourthScene(){
       let file = require('@/assets/audios/stairs_sound.mp3')
@@ -58,6 +58,7 @@ export default {
       let glass_audio = new Audio(file)
       glass_audio.play();
       this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
+      console.log(this.cursorImage);
       this.canOpen = !this.canOpen;
     },
     openCentralDoor() {

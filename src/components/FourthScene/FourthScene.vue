@@ -394,7 +394,7 @@ export default {
 }
 
 .liver {
-  @apply w-12 h-20 absolute;
+  @apply absolute;
   transform: rotate(5deg);
   top: 360px;
   left: 550px;

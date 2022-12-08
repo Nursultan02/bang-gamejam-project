@@ -3,9 +3,9 @@
        :style="`cursor: ${cursorImage ? `url(${cursorImage}) 20 20, pointer !important` :  'default'}`">
     <Transition name="bounce">
       <div v-if="displayNote" class="fixed flex justify-center items-center"
-           style="width: 100vw; height: 100vh; z-index: 6000000;     background-color: rgba(0, 0, 0, 0.8);">
+           style="width: 100vw; height: 100vh; z-index: 6000000;  background-color: rgba(0, 0, 0, 0.8);">
         <img @click="displayNote = false" class="-mt-8"
-             :src="noteImage" alt="" style="opacity: 1; z-index: 40000000000">
+             :src="noteImage" alt="" style="opacity: 1; height: 500px; z-index: 40000000000">
       </div>
     </Transition>
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
@@ -47,37 +47,9 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom},
   data() {
     return {
-      level: 1,
+      level: 2,
       cutSceneShow: 2,
-      elements: [
-        // {
-        //   index: 3, payload: {
-        //     image: require("@/assets/images/third-scene-eye.png"),
-        //     type: 'eye'
-        //   }
-        // },
-        // {
-        //   id: 2,
-        //   image: require('@/assets/images/note.png'),
-        //   full_image: require('@/assets/images/openedNote.png'),
-        //   type: 'note'
-        // },
-        // {
-        //   id: 1,
-        //   image: require('@/assets/images/keys/key1.png'),
-        //   type: 'key'
-        // },
-        // {
-        //   image: require('@/assets/images/ThirdScene/blueNote.png'),
-        //   full_image: require('@/assets/images/ThirdScene/noteThirdScene.png'),
-        //   type: 'note'
-        // },
-        // {
-        //   image: require('@/assets/images/fourthScene/FirstNote.png'),
-        //   full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
-        //   type: 'key'
-        // }
-      ],
+      elements: [],
       renderReload: 1,
       displayNote: false,
       text: '',
@@ -86,78 +58,58 @@ export default {
       cursorImage: null,
     }
   },
-    mounted() {
-      let level = localStorage.getItem('level');
-      if (level) {
-        this.level = parseInt(level);
-      }
-
-    },
-    methods: {
-      setScene(val)
-      {
-        this.cutSceneShow = val;
-      },
-      setLevel(val)
-      {
-        this.level = val
-      },
-      showTextToggle(val)
-      {
-        this.showText = val;
-      },
-      changeCursor(val)
-      {
-        this.cursorImage = val
-
-        if (this.cursorImage) {
-          console.log('mouse is active')
-          // window.addEventListener('click', this.mouseMoving)
-        }
-      },
-      showContext(val)
-      {
-        this.noteImage = val
-        this.displayNoteToggle(true)
-      },
-      displayNoteToggle(val)
-      {
-        this.displayNote = val
-      },
-      changeNoteImage(val)
-      {
-        this.noteImage = val
-      },
-      changeCredits(val)
-      {
-        this.text = val
-      }
-    ,
-      mouseMoving(e)
-      {
-        console.log(e);
-        if (e.target.className !== 'door_1 active1' && e.srcElement !== e.target) {
-          this.resetCursor();
-          window.removeEventListener('click', this.mouseMoving)
-        }
-      }
-    ,
-      setElementInInventar({payload}) {
-        let index = this.elements.findIndex(k=> k.id === payload.id);
-        if(index === -1) {
-          this.elements.push(payload);
-          this.renderReload++
-        }
-        console.log(this.elements)
-      }
-    ,
-      resetCursor()
-      {
-        this.cursorImage = null;
-      }
-    ,
+  mounted() {
+    let level = localStorage.getItem('level');
+    if (level) {
+      this.level = parseInt(level);
     }
+  },
+  methods: {
+    setScene(val) {
+      this.cutSceneShow = val;
+    },
+    setLevel(val) {
+      this.level = val
+    },
+    showTextToggle(val) {
+      this.showText = val;
+    },
+    changeCursor(val) {
+      this.cursorImage = val
+    },
+    showContext(val) {
+      this.noteImage = val
+      this.displayNoteToggle(true)
+    },
+    displayNoteToggle(val) {
+      this.displayNote = val
+    },
+    changeNoteImage(val) {
+      this.noteImage = val
+    },
+    changeCredits(val) {
+      this.text = val
+    },
+    mouseMoving(e) {
+      console.log(e);
+      if (e.target.className !== 'door_1 active1' && e.srcElement !== e.target) {
+        this.resetCursor();
+        window.removeEventListener('click', this.mouseMoving)
+      }
+    },
+    setElementInInventar({payload}) {
+      let index = this.elements.findIndex(k => k.id === payload.id);
+      if (index === -1) {
+        this.elements.push(payload);
+        this.renderReload++
+      }
+      console.log(this.elements)
+    },
+    resetCursor() {
+      this.cursorImage = null;
+    },
   }
+}
 </script>
 
 <style>
