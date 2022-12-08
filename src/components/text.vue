@@ -1,7 +1,7 @@
 <template>
   <div class="zText box-container">
-    <div class="invertar">
-      <carousel autoplay :perPage="3" :paginationEnabled="false" navigationEnabled>
+    <div class="invertar" v-if="elements && elements.length" style="width: 300px">
+      <carousel :key="renderReload" autoplay class="ml-6  border-0 border-r border-solid border-gray-400" style="width: 300px" :perPage="3" :paginationEnabled="false" navigationEnabled>
         <slide v-for="element in elements" :key="element.id">
           <div class="box">
             <div class="border-2 border-solid border-gray-800 p-2"
@@ -13,7 +13,7 @@
       </carousel>
     </div>
 
-    <div id="text" class="text text-gray-700 font-medium whitespace-pre" :key="renderReload" v-show="showText">
+    <div id="text" class="text text-gray-700 font-medium whitespace-pre"  v-show="showText">
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     showText: Boolean,
     renderReload: Number,
     elements: {
-      default: () => [{}, {}, {}],
+      default: () => [],
       type: Array
     },
   },
@@ -84,7 +84,7 @@ export default {
 }
 
 .text {
-  @apply p-4
+  @apply p-4 ml-10
 }
 
 .box {
@@ -100,8 +100,7 @@ export default {
 }
 
 .invertar {
-  @apply flex w-1/4;
-  margin-right: -25px;
+  @apply flex;
 }
 
 </style>
