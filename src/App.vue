@@ -3,9 +3,9 @@
        :style="`cursor: ${cursorImage ? `url(${cursorImage}) 20 20, pointer !important` :  'default'}`">
     <Transition name="bounce">
       <div v-if="displayNote" class="fixed flex justify-center items-center"
-           style="width: 100vw; height: 100vh; z-index: 6000;     background-color: rgba(0, 0, 0, 0.8);">
+           style="width: 100vw; height: 100vh; z-index: 6000000;     background-color: rgba(0, 0, 0, 0.8);">
         <img @click="displayNote = false" class=" w-72 h-96 -mt-8"
-             :src="noteImage" alt="" style="opacity: 1; z-index: 4000">
+             :src="noteImage" alt="" style="opacity: 1; z-index: 40000000000">
       </div>
     </Transition>
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
@@ -13,7 +13,7 @@
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel" v-if="level === 1"></FirstScene>
     <SecondScene @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel" v-if="level === 2"></SecondScene>
     <ThirdScene @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" v-if="level === 3"></ThirdScene>
-    <FourthScene v-if="level === 4"></FourthScene>
+    <FourthScene @setLevel="setLevel" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" @changeNoteImage="changeNoteImage" v-if="level === 4"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px">
       <textCustom :renderReload="renderReload" :showText="showText"
                   @changeCursor="changeCursor"
@@ -38,7 +38,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom },
   data() {
     return {
-      level: 2,
+      level: 4,
       cutSceneShow: 2,
       elements: [{}, {}, {}],
       renderReload: 1,

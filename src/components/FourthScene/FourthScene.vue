@@ -6,8 +6,10 @@
       <div  class="magic_tree" :class="{'magic_tree_showing': showTree}"></div>
 
       <div @click="getNodeFromBird" class="bird" :class="{'bird_opened': birdOpened, 'bird_closed': !birdOpened, 'bird_showing': showTree}"></div>
-
+      <img @click="openFirstNote" v-if="showNote && !firstNoteReaded" src="@/assets/images/fourthScene/FirstNote.png" class="note" :class="{'note-animation': showNote}" alt="">
       <div class="cupboard" :class="cupboardClosed ? 'closed_cupboard' : 'opened_cupboard'"></div>
+      <img v-if="showLiver" @click="addLiver" src="@/assets/images/fourthScene/liver.png" class="liver" alt="">
+      <img v-if="showSecondNote" @click="openSecondNote" src="@/assets/images/fourthScene/FirstNote.png" class="second-note" alt="">
 
       <div v-if="showTree" class="flower"></div>
 
@@ -25,7 +27,11 @@ export default {
       typeCombination: [],
       showTree: false,
       birdOpened: true,
-      cupboardClosed: true,
+      cupboardClosed: false,
+      showNote: false,
+      firstNoteReaded: false,
+      showLiver: true,
+      showSecondNote: true,
     }
   },
   methods: {
@@ -35,10 +41,46 @@ export default {
     getNodeFromBird(){
       setInterval(() => {
         this.birdOpened = !this.birdOpened;
-      },100)
+      },1000)
+      this.showNote = true;
     },
     reset() {
       this.typeCombination = [];
+    },
+    openFirstNote() {
+      this.$emit('displayNoteToggle', true);
+      this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedSecondNote.png'))
+      this.$emit('setElementInInventar', {
+        index: 5, payload: {
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/fourthScene/openedSecondNote.png'),
+          type: 'note'
+        }
+      })
+      this.firstNoteReaded = true;
+    },
+    openSecondNote() {
+      this.$emit('displayNoteToggle', true);
+      this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedFirstNote.png'))
+      this.$emit('setElementInInventar', {
+        index: 5, payload: {
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
+          type: 'note'
+        }
+      })
+      this.showSecondNote = false;
+    },
+    addLiver() {
+      this.$emit('setElementInInventar', {
+        index: 5, payload: {
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
+          type: 'note'
+        }
+      })
+      this.showLiver = false;
+      this.$emit('setLevel', 2)
     },
     handleKeyClick(key) {
       console.log(key);
@@ -73,6 +115,8 @@ export default {
         if(this.correctCombination[5] === key){
           console.log("WIN")
           this.cupboardClosed = false;
+          this.showSecondNote = true;
+          this.showLiver = true;
         }else {
           this.reset();
         }
@@ -260,6 +304,47 @@ export default {
   0% { left: 52px; }
   50% { left: 58px; }
   100% { left: 55px; }
+}
+
+.liver {
+  @apply w-12 h-20 absolute;
+  transform: rotate(5deg);
+  top: 360px;
+  left: 550px;
+  z-index: 100000
+}
+
+
+.second-note {
+  @apply w-6 h-8 absolute;
+  transform: rotate(5deg);
+  top: 300px;
+  left: 550px;
+  z-index: 100000
+}
+
+.note {
+  @apply w-6 h-8;
+  position: absolute;
+  transform: rotate(5deg);
+  top: 600px;
+  left: 130px;
+}
+
+.note-animation {
+  animation: note_falling 0.55s;
+}
+
+@keyframes note_falling {
+  0% {
+    top: 220px
+  }
+  /*25%   {top: 445px; left: 475px }*/
+  /*50%   {top: 470px; left: 483px }*/
+  /*75%  {top: 490px; left: 478px}*/
+  100% {
+    top: 600px
+  }
 }
 
 
