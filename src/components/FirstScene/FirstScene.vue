@@ -78,7 +78,9 @@ export default {
     openDoor() {
       if (this.keyHanded) {
         this.firstDoorOpened = !this.firstDoorOpened;
-        this.$emit('setLevel', 2)
+        setTimeout(()=> {
+          this.$emit('setLevel', 2)
+        }, 300)
       }
     },
     toggleDresser() {
