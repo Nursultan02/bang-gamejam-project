@@ -86,31 +86,26 @@ export default {
       cursorImage: null,
     }
   },
-    mounted()
-    {
+    mounted() {
       let level = localStorage.getItem('level');
       if (level) {
         this.level = parseInt(level);
       }
 
-    }
-  ,
+    },
     methods: {
       setScene(val)
       {
         this.cutSceneShow = val;
-      }
-    ,
+      },
       setLevel(val)
       {
         this.level = val
-      }
-    ,
+      },
       showTextToggle(val)
       {
         this.showText = val;
-      }
-    ,
+      },
       changeCursor(val)
       {
         this.cursorImage = val
@@ -119,24 +114,20 @@ export default {
           console.log('mouse is active')
           // window.addEventListener('click', this.mouseMoving)
         }
-      }
-    ,
+      },
       showContext(val)
       {
         this.noteImage = val
         this.displayNoteToggle(true)
-      }
-    ,
+      },
       displayNoteToggle(val)
       {
         this.displayNote = val
-      }
-    ,
+      },
       changeNoteImage(val)
       {
         this.noteImage = val
-      }
-    ,
+      },
       changeCredits(val)
       {
         this.text = val

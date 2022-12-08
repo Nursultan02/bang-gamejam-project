@@ -63,7 +63,8 @@ export default {
       this.currentTime = 0;
       this.play();
     }, false);
-    audio.play()
+    audio.volume = 0.5;
+    audio.play();
 
   },
   methods: {

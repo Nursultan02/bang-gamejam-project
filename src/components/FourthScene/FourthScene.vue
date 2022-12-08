@@ -107,8 +107,7 @@ export default {
       grab_audio.play();
       this.$emit('setElementInInventar', {
         index: 5, payload: {
-          image: require('@/assets/images/fourthScene/FirstNote.png'),
-          full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
+          image: require('@/assets/images/fourthScene/liver.png'),
           type: 'key'
         }
       })
