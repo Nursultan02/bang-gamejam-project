@@ -70,17 +70,22 @@ export default {
         }
       })
       this.showSecondNote = false;
+      if(!this.showSecondNote && !this.showLiver) {
+        this.$emit('setLevel', 2)
+      }
     },
     addLiver() {
       this.$emit('setElementInInventar', {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/FirstNote.png'),
           full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
-          type: 'note'
+          type: 'key'
         }
       })
       this.showLiver = false;
-      this.$emit('setLevel', 2)
+      if(!this.showLiver && !this.showSecondNote) {
+        this.$emit('setLevel', 2)
+      }
     },
     handleKeyClick(key) {
       console.log(key);
