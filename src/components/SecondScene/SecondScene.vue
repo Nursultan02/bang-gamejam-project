@@ -5,6 +5,7 @@
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
     <div @click="openThirdScene" class="thirdScene hover: cursor-pointer" :class="{'active_scene': activeThird}"></div>
     <div @click="openFourthScene" class="fourthScene hover: cursor-pointer" :class="{'active_scene': activeFourth}"></div>
+    <img @click="addToInventary" v-if="activeThird && activeFourth && !lastNoteReaded" src="@/assets/images/fourthScene/FirstNote.png" alt="" class="last-note">
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
@@ -26,8 +27,9 @@ export default {
       canOpen: false,
       isDark: false,
       finishType: null,
-      activeThird: true,
+      activeThird: false,
       activeFourth: false,
+      lastNoteReaded: false,
     };
   },
   props: {
@@ -80,10 +82,12 @@ export default {
       if(this.cursorType === 'eye') {
         this.finishType = 'horror'
         this.canOpen = !this.canOpen;
+        this.$emit('resetCursor')
       }
       if(this.cursorType === 'liver') {
         this.finishType = 'nice'
         this.canOpen = !this.canOpen;
+        this.$emit('resetCursor')
       }
       console.log(this.finish, this.cursorType);
     },
@@ -97,7 +101,20 @@ export default {
       else{
         this.$emit('changeCredits', 'Оо... мына есіктен шыға алатын сияқтымын. Бірақ жабық тұр. Ашудың жолын іздеу керек.')
       }
-    }
+    },
+    addToInventary() {
+      this.$emit('displayNoteToggle', true);
+      this.$emit('changeNoteImage', require('@/assets/images/last-note.png'));
+      this.$emit('setElementInInventar', {
+        index: 11, payload: {
+          id: 11,
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/last-note.png'),
+          type: 'note'
+        }
+      })
+      this.lastNoteReaded = true;
+    },
   },
 }
 </script>
@@ -352,6 +369,9 @@ export default {
 .active:hover {
   cursor: pointer;
   border: 2px solid deepskyblue;
+}
+.active{
+  @apply bg-gray-900;
 }
 
 .glass {
@@ -631,5 +651,14 @@ export default {
     opacity: 0;
     transform: translateY(-5em) scale(0);
   }
+}
+
+.last-note {
+  position: absolute;
+  @apply w-6 h-8;
+  top: 550px;
+  left: 520px;
+  z-index: 400000;
+
 }
 </style>

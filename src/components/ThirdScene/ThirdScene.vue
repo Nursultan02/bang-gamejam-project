@@ -27,7 +27,7 @@
       <div class="claw5"></div>
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
 
-      <div v-if="elementsLength === 4" @click="goBack" class="back-icon">
+      <div @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-right.png" alt="">
       </div>
 
@@ -48,7 +48,7 @@ export default {
       typeCombination: [],
       fireSize: "14px",
       showPromts: false,
-      giveEye: false,
+      giveEye: true,
       showNote: false,
       noteReaded: false,
       showEye: true,

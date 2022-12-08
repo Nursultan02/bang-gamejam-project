@@ -11,16 +11,37 @@
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
     <video @ended="setLevel(1)" autoplay height="100%" width="100%"
            v-if="cutSceneShow === 1 && ![1, 2, 3, 4].includes(level)" src="@/assets/videos/Scene1.mp4"></video>
-    <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits"
-                @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel"
+    <FirstScene :keyHanded="cursorImage"
+                @setElementInInventar="setElementInInventar"
+                @changeCredits="changeCredits"
+                @changeNoteImage="changeNoteImage"
+                @displayNoteToggle="displayNoteToggle"
+                @setLevel="setLevel"
                 v-if="level === 1 && !finish"></FirstScene>
-    <SecondScene :elementsLength="elements.length" @setFinish="setFinish" :finish="finish" :cursorType="cursorType" :cursorImage="cursorImage" @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel"
+    <SecondScene :elementsLength="elements.length"
+                 @setFinish="setFinish"
+                 :finish="finish"
+                 :cursorType="cursorType"
+                 :cursorImage="cursorImage"
+                 @resetCursor="resetCursor"
+                 @changeCredits="changeCredits"
+                 @setLevel="setLevel"
+                 @setElementInInventar="setElementInInventar"
+                 @displayNoteToggle="displayNoteToggle"
+                 @changeNoteImage="changeNoteImage"
                  v-if="level === 2 && !finish"></SecondScene>
-    <ThirdScene :elementsLength="elements.length" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @setLevel="setLevel"
-                @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar"
+    <ThirdScene :elementsLength="elements.length"
+                @changeCredits="changeCredits"
+                @changeNoteImage="changeNoteImage"
+                @setLevel="setLevel"
+                @displayNoteToggle="displayNoteToggle"
+                @setElementInInventar="setElementInInventar"
                 v-if="level === 3 && !finish"></ThirdScene>
-    <FourthScene :elementsLength="elements.length" @setLevel="setLevel" @displayNoteToggle="displayNoteToggle"
-                 @setElementInInventar="setElementInInventar" @changeNoteImage="changeNoteImage"
+    <FourthScene :elementsLength="elements.length"
+                 @setLevel="setLevel"
+                 @displayNoteToggle="displayNoteToggle"
+                 @setElementInInventar="setElementInInventar"
+                 @changeNoteImage="changeNoteImage"
                  v-if="level === 4 && !finish"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px" v-if="level && cutSceneShow && !finish">
       <textCustom @setCursorType="setCursorType"
@@ -32,8 +53,8 @@
                   :text="text"
       ></textCustom>
     </div>
-    <video v-if="finish === 'horror'" style="z-index: 900000000" src="@/assets/videos/horror.mp4"  autoplay height="100%" width="100%"></video>
-    <video v-if="finish === 'nice'" style="z-index: 900000000" src="@/assets/videos/niceEnded.mp4"  autoplay height="100%" width="100%"></video>
+    <video v-if="finish === 'horror'" style="margin-top: -30px; z-index: 900000000" src="@/assets/videos/horror.mp4"  autoplay height="100%" width="100%"></video>
+    <video v-if="finish === 'nice'" style="margin-top: -30px; z-index: 900000000" src="@/assets/videos/niceEnded.mp4"  autoplay height="100%" width="100%"></video>
   </div>
 </template>
 
