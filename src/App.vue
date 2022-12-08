@@ -37,7 +37,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom },
   data() {
     return {
-      level: 4,
+      level: 1,
       cutSceneShow: 2,
       elements: [{}, {}, {}],
       renderReload: 1,

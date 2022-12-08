@@ -12,12 +12,11 @@
       <div class="sandBox" @click="openBox"></div>
       <div class="dresser cursor-help relative" @click="toggleDresser">
         <img v-if="showOpenedDresser" src="@/assets/images/openedDresser.png" alt="">
-        <Transition name="slide-move">
-          <img v-if="showNote && !noteReaded" @click="startReadNote" src="@/assets/images/note.png" alt=""
-               class="w-12 h-12"
-               style="z-index: 4000">
-        </Transition>
       </div>
+
+      <img v-if="showNote && !noteReaded" @click="startReadNote" src="@/assets/images/note.png" alt=""
+           class="note" :class="{'note-animation': showNote }"
+           style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
       <div @click="isDark = !isDark" class="lamp"></div>
     </div>
@@ -153,6 +152,26 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.note {
+  @apply w-6 h-8;
+  position: absolute;
+  transform: rotate(5deg);
+  top: 510px;
+  left: 480px;
+}
+
+.note-animation {
+  animation: note_falling ease-in 0.55s;
+}
+
+@keyframes note_falling {
+  0%   {top: 390px; left: 480px }
+  /*25%   {top: 445px; left: 475px }*/
+  /*50%   {top: 470px; left: 483px }*/
+  /*75%  {top: 490px; left: 478px}*/
+  100% {top: 510px; left: 480px}
 }
 
 .door_1 {
