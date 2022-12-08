@@ -18,7 +18,7 @@
            class="note" :class="{'note-animation': showNote }"
            style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
-      <div @click="isDark = !isDark" class="lamp"></div>
+      <div @click="toggleLamp" class="lamp"></div>
     </div>
   </div>
 </template>
@@ -67,8 +67,18 @@ export default {
 
   },
   methods: {
+    toggleLamp(){
+      this.isDark = !this.isDark;
+      let file2 = require('@/assets/audios/click_sound.mp3')
+      let dresser_audio = new Audio(file2)
+      dresser_audio.play();
+    },
     openDoor() {
       if (this.keyHanded) {
+        this.isDark = !this.isDark;
+        let file2 = require('@/assets/audios/door_open_sound.mp3')
+        let door_open_audio = new Audio(file2)
+        door_open_audio.play();
         this.firstDoorOpened = !this.firstDoorOpened;
         setTimeout(()=> {
           this.$emit('setLevel', 2)
@@ -77,12 +87,18 @@ export default {
     },
     toggleDresser() {
       if (!this.isDark) {
+        let file2 = require('@/assets/audios/cupboard_sound.mp3')
+        let dresser_audio = new Audio(file2)
+        dresser_audio.play();
         this.showOpenedDresser = true;
         this.showNote = true;
         this.startDownAction = true;
       }
     },
     startReadNote() {
+      let file3 = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file3)
+      grab_audio.play();
       this.displayNote = true;
       this.$emit('displayNoteToggle', true);
       this.$emit('changeNoteImage', require('@/assets/images/openedNote.png'))
@@ -95,6 +111,9 @@ export default {
     openBox() {
       if (this.noteReaded) {
         this.openedBox = true;
+        let file1 = require('@/assets/audios/box_open_sound.mp3')
+        let box_audio = new Audio(file1)
+        box_audio.play();
         this.$emit('setElementInInventar', {
           index: 1, payload: {
             id: 1,
@@ -275,6 +294,7 @@ export default {
   top: 310px;
   right: 450px;
   border: 0;
+  cursor: pointer;
 }
 
 
