@@ -27,7 +27,7 @@ export default {
       canOpen: false,
       isDark: false,
       finishType: null,
-      activeThird: false,
+      activeThird: true,
       activeFourth: false,
       lastNoteReaded: false,
     };
