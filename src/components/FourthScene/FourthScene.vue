@@ -15,7 +15,7 @@
 
       <div v-for="i in 6" @click="handleKeyClick(i)" :class="`petal-${i}`" :key="i"></div>
 
-      <div v-if="showBackIcon" @click="goBack" class="back-icon">
+      <div v-if="elementsLength === 7" @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-left.png" alt="">
       </div>
 
@@ -28,6 +28,9 @@
 
 export default {
   name: "FourthScene",
+  props: {
+    elementsLength: Number,
+  },
   data(){
     return {
       correctCombination: [1, 2, 6, 5, 4, 3],
@@ -39,7 +42,6 @@ export default {
       firstNoteReaded: false,
       showLiver: false,
       showSecondNote: false,
-      showBackIcon: false,
       isDark: false,
     }
   },
@@ -107,7 +109,6 @@ export default {
       })
       this.showSecondNote = false;
       if(!this.showSecondNote && !this.showLiver && !this.cupboardClosed) {
-        this.showBackIcon = true;
         // this.$emit('setLevel', 2)
       }
     },

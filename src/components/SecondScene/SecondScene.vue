@@ -3,8 +3,8 @@
   <div :class="[isDark ? 'game dark' : 'game']">
     <div @click="putTheEye" class="glass" :class="{'cursor-pointer': !cursorType}"></div>
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
-    <div @click="openThirdScene" class="thirdScene hover: cursor-pointer"></div>
-    <div @click="openFourthScene" class="fourthScene hover: cursor-pointer"></div>
+    <div @click="openThirdScene" class="thirdScene hover: cursor-pointer" :class="{'active_scene': activeThird}"></div>
+    <div @click="openFourthScene" class="fourthScene hover: cursor-pointer" :class="{'active_scene': activeFourth}"></div>
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
@@ -26,14 +26,25 @@ export default {
       canOpen: false,
       isDark: false,
       finishType: null,
+      activeThird: true,
+      activeFourth: false,
     };
   },
   props: {
     cursorType: String,
-    finish: String
+    finish: String,
+    elementsLength: Number,
   },
   mounted() {
     this.$emit('resetCursor');
+    if(this.elementsLength === 4) {
+      this.activeThird = false;
+      this.activeFourth = true;
+    }
+    if(this.elementsLength === 7) {
+      this.activeThird = false;
+      this.activeFourth = false;
+    }
   },
   methods: {
     toggleLamp(){
@@ -43,6 +54,7 @@ export default {
       click_audio.play();
     },
     openThirdScene(){
+      if(!this.activeThird) return;
       let file = require('@/assets/audios/stairs_sound.mp3')
       let stairs_audio = new Audio(file)
       stairs_audio.play();
@@ -51,6 +63,7 @@ export default {
       })
     },
     openFourthScene(){
+      if(!this.activeFourth) return;
       let file = require('@/assets/audios/stairs_sound.mp3')
       let stairs_audio = new Audio(file)
       stairs_audio.play();
@@ -363,10 +376,21 @@ export default {
   width: 10px;
   height: 150px;
   border-radius: 10px 0 0 10px;
-  background-color: #000;
   position: absolute;
   top: 145px;
   right: 0;
+  background-color: #694425
+
+}
+
+.active_scene {
+  animation: blicking_door 1s ease-out infinite;
+}
+
+@keyframes blicking_door {
+  0% {background-color: #694425
+  }
+  100% {background-color: deepskyblue}
 }
 
 .water_bulking {

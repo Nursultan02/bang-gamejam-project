@@ -107,6 +107,9 @@ export default {
       this.noteReaded = true;
     },
     changeText() {
+      let file3 = require('@/assets/audios/lock_door_sound.mp3')
+      let lock_door_audio = new Audio(file3)
+      lock_door_audio.play();
       this.$emit('changeCredits', 'Бұл сыртқа шығатын есік. Жабық тұрған секілді. Басқа шығатын жер табу керек.')
     },
     openBox() {

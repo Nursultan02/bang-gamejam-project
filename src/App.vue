@@ -14,12 +14,12 @@
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits"
                 @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel"
                 v-if="level === 1 && !finish"></FirstScene>
-    <SecondScene @setFinish="setFinish" :finish="finish" :cursorType="cursorType" :cursorImage="cursorImage" @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel"
+    <SecondScene :elementsLength="elements.length" @setFinish="setFinish" :finish="finish" :cursorType="cursorType" :cursorImage="cursorImage" @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel"
                  v-if="level === 2 && !finish"></SecondScene>
-    <ThirdScene @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @setLevel="setLevel"
+    <ThirdScene :elementsLength="elements.length" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @setLevel="setLevel"
                 @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar"
                 v-if="level === 3 && !finish"></ThirdScene>
-    <FourthScene @setLevel="setLevel" @displayNoteToggle="displayNoteToggle"
+    <FourthScene :elementsLength="elements.length" @setLevel="setLevel" @displayNoteToggle="displayNoteToggle"
                  @setElementInInventar="setElementInInventar" @changeNoteImage="changeNoteImage"
                  v-if="level === 4 && !finish"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px" v-if="level && cutSceneShow && !finish">
@@ -50,7 +50,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom},
   data() {
     return {
-      level: 2,
+      level: 1,
       cutSceneShow: 2,
       elements: [],
       renderReload: 1,

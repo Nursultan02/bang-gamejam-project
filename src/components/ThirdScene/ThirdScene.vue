@@ -19,6 +19,7 @@
         >
       </div>
       <div  class="eye"></div>
+
       <div class="claw1"></div>
       <div class="claw2"></div>
       <div class="claw3"></div>
@@ -26,7 +27,7 @@
       <div class="claw5"></div>
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
 
-      <div v-if="showBackIcon" @click="goBack" class="back-icon">
+      <div v-if="elementsLength === 4" @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-right.png" alt="">
       </div>
 
@@ -38,6 +39,9 @@
 <script>
 export default {
   name: "ThirdScene",
+  props: {
+    elementsLength: Number,
+  },
   data() {
     return {
       correctCombination: [3, 2, 1, 4, 1],
@@ -49,7 +53,6 @@ export default {
       noteReaded: false,
       showEye: true,
       audio: null,
-      showBackIcon: false,
       isDark: false,
     };
   },
@@ -172,7 +175,6 @@ export default {
       })
 
       this.showEye = false;
-      this.showBackIcon = true;
     },
     startReadNote() {
       let file = require('@/assets/audios/grab_sound.mp3')
@@ -757,7 +759,7 @@ export default {
 
 
 .note {
-  @apply w-6 h-8;
+  @apply w-8 h-10;
   position: absolute;
   transform: rotate(5deg);
   top: 510px;
