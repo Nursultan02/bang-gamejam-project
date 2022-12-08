@@ -12,7 +12,7 @@
       <div v-if="!showPromts" class="answer-hider">
       </div>
 
-      <div @click="setShowPrompts" class="lamp" :class="{'lamp-animating': !showPromts}"></div>
+      <div @mouseenter="mouseEnterOnLamp" @click="setShowPrompts" class="lamp" :class="{'lamp-animating': !showPromts}"></div>
       <div v-if="showNote && !noteReaded">
         <img @click="startReadNote" src="@/assets/images/ThirdScene/blueNote.png" alt=""
              class="note" :class="{'note-animation': showNote }"
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
   name: "ThirdScene",
   data() {
@@ -52,7 +53,7 @@ export default {
   },
   mounted() {
     this.$emit("changeCredits", 'Үй иесінің кабинеті секілді. Мұнда не бар екенін көрейік.')
-    let file = require('@/assets/audios/third-scene-audio.mp3')
+    let file = require('@/assets/audios/fire_sound.mp3')
     this.audio = new Audio(file)
     this.audio.addEventListener('ended', function () {
       this.currentTime = 0;
@@ -68,6 +69,14 @@ export default {
     }
   },
   methods: {
+    mouseEnterOnLamp(){
+      if(!this.showNote){
+        let file = require('@/assets/audios/shake_lamp_sound.mp3')
+        let lamp_audio = new Audio(file)
+        lamp_audio.play();
+      }
+
+    },
     goBack(){
       this.$emit("setLevel", 2);
     },
@@ -86,6 +95,9 @@ export default {
       if (!this.showPromts) {
         return
       }
+      let file = require('@/assets/audios/button_push_sound.mp3')
+      let button_push_audio = new Audio(file)
+      button_push_audio.play();
 
       this.typeCombination.push(key);
       let len = this.typeCombination.length;
@@ -129,6 +141,9 @@ export default {
           this.fireSize = '3px';
           this.audio.volume = 0;
           this.giveEye = true;
+          let file = require('@/assets/audios/eye_falling_sound.mp3')
+          let eye_audio = new Audio(file)
+          eye_audio.play();
           console.log('DONE!')
         } else {
           this.reset();
@@ -136,6 +151,9 @@ export default {
       }
     },
     addToInventary() {
+      let file = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file)
+      grab_audio.play();
       this.$emit('setElementInInventar', {
         index: 3, payload: {
           image: require("@/assets/images/third-scene-eye.png"),
@@ -147,6 +165,9 @@ export default {
       this.showBackIcon = true;
     },
     startReadNote() {
+      let file = require('@/assets/audios/grab_sound.mp3')
+      let grab_audio = new Audio(file)
+      grab_audio.play();
       this.$emit('displayNoteToggle', true);
       this.$emit('changeNoteImage', require('@/assets/images/ThirdScene/noteThirdScene.png'));
       this.$emit('setElementInInventar', {
