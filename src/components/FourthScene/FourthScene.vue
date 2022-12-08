@@ -156,6 +156,7 @@ export default {
   position: relative;
 }
 
+
 .back-icon {
   position: absolute;
   width: 40px;
@@ -175,6 +176,7 @@ export default {
   left: 588px;
   border-radius: 10px;
   transform: rotate(-30deg);
+  cursor: pointer;
 }
 
 .petal-2 {
@@ -186,6 +188,7 @@ export default {
   left: 605px;
   border-radius: 10px;
   transform: rotate(40deg);
+  cursor: pointer;
 }
 
 .petal-3 {
@@ -197,6 +200,7 @@ export default {
   left: 608px;
   border-radius: 10px;
   transform: rotate(120deg);
+  cursor: pointer;
 }
 
 .petal-4 {
@@ -208,6 +212,7 @@ export default {
   left: 603px;
   border-radius: 10px;
   transform: rotate(-30deg);
+  cursor: pointer;
 }
 
 .petal-5 {
@@ -219,6 +224,7 @@ export default {
   left: 584px;
   border-radius: 10px;
   transform: rotate(30deg);
+  cursor: pointer;
 }
 
 .petal-6 {
@@ -230,6 +236,7 @@ export default {
   left: 576px;
   border-radius: 10px;
   transform: rotate(-90deg);
+  cursor: pointer;
 }
 
 .flower {
@@ -277,6 +284,7 @@ export default {
   background-size: cover;
   opacity: 0;
   transition: 1.2s ease-in-out;
+  cursor: pointer;
 }
 
 .bird_showing {
@@ -319,6 +327,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../assets/images/fourthScene/kid_bed.png");
+  cursor: pointer;
 }
 
 .kid_bed_moving:hover {
@@ -336,7 +345,8 @@ export default {
   transform: rotate(5deg);
   top: 360px;
   left: 550px;
-  z-index: 100000
+  z-index: 100000;
+  cursor: pointer;
 }
 
 
@@ -345,15 +355,17 @@ export default {
   transform: rotate(5deg);
   top: 300px;
   left: 550px;
-  z-index: 100000
+  z-index: 100000;
+  cursor: pointer;
 }
 
 .note {
   @apply w-6 h-8;
   position: absolute;
-  transform: rotate(5deg);
-  top: 600px;
+  transform: rotate(-5deg);
+  top: 535px;
   left: 130px;
+  cursor: pointer;
 }
 
 .note-animation {
@@ -368,10 +380,8 @@ export default {
   /*50%   {top: 470px; left: 483px }*/
   /*75%  {top: 490px; left: 478px}*/
   100% {
-    top: 600px
+    top: 535px
   }
 }
-
-
 
 </style>

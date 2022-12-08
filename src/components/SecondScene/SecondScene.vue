@@ -258,6 +258,7 @@ export default {
   z-index: 1000;
 
   transition: .15s ease-in-out;
+  cursor: pointer;
 
 }
 

@@ -10,7 +10,7 @@
         </transition>
       </div>
       <div class="sandBox" @click="openBox"></div>
-      <div class="dresser cursor-help relative" @click="toggleDresser">
+      <div class="dresser relative" @click="toggleDresser">
         <img v-if="showOpenedDresser" src="@/assets/images/openedDresser.png" alt="">
       </div>
 
@@ -149,6 +149,7 @@ export default {
   transform: rotate(5deg);
   top: 510px;
   left: 480px;
+  cursor: pointer;
 }
 
 .note-animation {
@@ -173,6 +174,7 @@ export default {
   z-index: 1000;
 
   transition: .15s ease-in-out;
+  cursor: pointer;
 }
 
 .active1:hover {
@@ -186,7 +188,6 @@ export default {
   height: 100%;
   background-color: #000;
   box-shadow: 10px 0 5px -2px #363636;
-
 }
 
 .top-shadow {
@@ -263,7 +264,8 @@ export default {
   position: absolute;
   bottom: 180px;
   left: 482px;
-  z-index: 3000
+  z-index: 3000;
+  cursor: pointer;
 }
 
 .sandBox {

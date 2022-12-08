@@ -204,6 +204,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0;
+  cursor: pointer;
 }
 
 .eye-element-falling {
@@ -715,6 +716,7 @@ export default {
   transform: rotate(5deg);
   top: 510px;
   right: 280px;
+  cursor: pointer;
 }
 
 .note-animation {
