@@ -4,7 +4,7 @@
     <Transition name="bounce">
       <div v-if="displayNote" class="fixed flex justify-center items-center"
            style="width: 100vw; height: 100vh; z-index: 6000000;     background-color: rgba(0, 0, 0, 0.8);">
-        <img @click="displayNote = false" class="h-96 -mt-8"
+        <img @click="displayNote = false" class="h-96 -mt-8    "
              :src="noteImage" alt="" style="opacity: 1; z-index: 40000000000">
       </div>
     </Transition>
