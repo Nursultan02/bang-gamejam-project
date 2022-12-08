@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <div class="game">
+    <div :class="[isDark ? 'game dark' : 'game']">
       <div class="fire" :style="fireStyle">
         <div class="particle" v-for="i in 50" :key="i"></div>
       </div>
@@ -29,12 +29,13 @@
       <div v-if="showBackIcon" @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-right.png" alt="">
       </div>
+
+      <div @click="toggleLamp" class="lamp_1"></div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "ThirdScene",
   data() {
@@ -49,6 +50,7 @@ export default {
       showEye: true,
       audio: null,
       showBackIcon: false,
+      isDark: false,
     };
   },
   mounted() {
@@ -69,6 +71,12 @@ export default {
     }
   },
   methods: {
+    toggleLamp(){
+      this.isDark = !this.isDark;
+      let file2 = require('@/assets/audios/click_sound.mp3')
+      let click_audio = new Audio(file2)
+      click_audio.play();
+    },
     mouseEnterOnLamp(){
       if(!this.showNote){
         let file = require('@/assets/audios/shake_lamp_sound.mp3')
@@ -206,6 +214,20 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.dark {
+  opacity: 0.3;
+}
+
+.lamp_1 {
+  position: absolute;
+  top: 60px;
+  left: 515px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .back-icon {

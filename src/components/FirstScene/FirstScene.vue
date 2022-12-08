@@ -71,8 +71,8 @@ export default {
     toggleLamp(){
       this.isDark = !this.isDark;
       let file2 = require('@/assets/audios/click_sound.mp3')
-      let dresser_audio = new Audio(file2)
-      dresser_audio.play();
+      let click_audio = new Audio(file2)
+      click_audio.play();
     },
     openDoor() {
       if (this.keyHanded) {

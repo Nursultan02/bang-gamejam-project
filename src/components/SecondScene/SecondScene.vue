@@ -1,6 +1,6 @@
 <template>
 <div class="main-wrapper">
-  <div class="game">
+  <div :class="[isDark ? 'game dark' : 'game']">
     <div @click="putTheEye" class="glass"></div>
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
     <div @click="openThirdScene" class="thirdScene hover: cursor-pointer"></div>
@@ -10,24 +10,33 @@
     <div class="water_bulking">
       <div class="particle" v-for="i in 50" :key="i"></div>
     </div>
+
+    <div @click="toggleLamp" class="lamp_1"></div>
+    <div @click="toggleLamp" class="lamp_2"></div>
   </div>
 </div>
 </template>
 
 <script>
 
-
 export default {
   name: "SecondScene",
   data(){
     return {
       canOpen: false,
+      isDark: false,
     };
   },
   mounted() {
     this.$emit('resetCursor');
   },
   methods: {
+    toggleLamp(){
+      this.isDark = !this.isDark;
+      let file2 = require('@/assets/audios/click_sound.mp3')
+      let click_audio = new Audio(file2)
+      click_audio.play();
+    },
     openThirdScene(){
       let file = require('@/assets/audios/stairs_sound.mp3')
       let stairs_audio = new Audio(file)
@@ -82,6 +91,30 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.dark {
+  opacity: 0.3;
+}
+
+.lamp_1 {
+  position: absolute;
+  top: 95px;
+  left: 185px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.lamp_2 {
+  position: absolute;
+  top: 95px;
+  right: 185px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .star-1 {

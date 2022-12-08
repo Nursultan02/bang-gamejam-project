@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <div class="game">
+    <div :class="[isDark ? 'game dark' : 'game']">
       <div @mouseenter="mouseEnterOnBed" class="kid_bed" :class="{'kid_bed_moving': !showTree}" @click="showMagicTree"></div>
 
       <div  class="magic_tree" :class="{'magic_tree_showing': showTree}"></div>
@@ -18,12 +18,13 @@
       <div v-if="showBackIcon" @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-left.png" alt="">
       </div>
+
+      <div @click="toggleLamp" class="lamp_1"></div>
     </div>
   </div>
 </template>
 
 <script>
-
 
 export default {
   name: "FourthScene",
@@ -39,9 +40,16 @@ export default {
       showLiver: false,
       showSecondNote: false,
       showBackIcon: false,
+      isDark: false,
     }
   },
   methods: {
+    toggleLamp(){
+      this.isDark = !this.isDark;
+      let file2 = require('@/assets/audios/click_sound.mp3')
+      let click_audio = new Audio(file2)
+      click_audio.play();
+    },
     mouseEnterOnBed(){
       if(!this.showTree){
         let file = require('@/assets/audios/bed_shaking_sound.mp3')
@@ -185,6 +193,20 @@ export default {
   background-size: cover;
   background-image: url("../../assets/images/fourthScene/fourth-scene-bg.png");
   position: relative;
+}
+
+.dark {
+  opacity: 0.3;
+}
+
+.lamp_1 {
+  position: absolute;
+  top: 57px;
+  left: 519px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 
