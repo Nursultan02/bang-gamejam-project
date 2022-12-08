@@ -165,7 +165,8 @@ export default {
       this.$emit('setElementInInventar', {
         index: 3, payload: {
           image: require("@/assets/images/third-scene-eye.png"),
-          type: 'eye',
+          type: 'key',
+          title: 'eye',
           id: 8
         }
       })

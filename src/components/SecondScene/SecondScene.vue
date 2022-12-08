@@ -1,7 +1,7 @@
 <template>
 <div class="main-wrapper">
   <div :class="[isDark ? 'game dark' : 'game']">
-    <div @click="putTheEye" class="glass"></div>
+    <div @click="putTheEye" class="glass" :class="{'cursor-pointer': !cursorType}"></div>
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
     <div @click="openThirdScene" class="thirdScene hover: cursor-pointer"></div>
     <div @click="openFourthScene" class="fourthScene hover: cursor-pointer"></div>
@@ -25,7 +25,12 @@ export default {
     return {
       canOpen: false,
       isDark: false,
+      finishType: null,
     };
+  },
+  props: {
+    cursorType: String,
+    finish: String
   },
   mounted() {
     this.$emit('resetCursor');
@@ -49,9 +54,9 @@ export default {
       let file = require('@/assets/audios/stairs_sound.mp3')
       let stairs_audio = new Audio(file)
       stairs_audio.play();
-      setTimeout(() => {
+      stairs_audio.addEventListener('ended', ()=> {
         this.$emit('setLevel', 4);
-      },2500)
+      })
     },
     putTheEye(){
       let file = require('@/assets/audios/glass_sound.mp3')
@@ -59,13 +64,26 @@ export default {
       glass_audio.play();
       this.$emit('changeCredits', 'Мына кесеге қандай да бір зат салса, есік ашылу керек. Бірақ нені?')
       console.log(this.cursorImage);
-      this.canOpen = !this.canOpen;
+      if(this.cursorType === 'eye') {
+        this.finishType = 'horror'
+        this.canOpen = !this.canOpen;
+      }
+      if(this.cursorType === 'liver') {
+        this.finishType = 'nice'
+        this.canOpen = !this.canOpen;
+      }
+      console.log(this.finish, this.cursorType);
     },
     openCentralDoor() {
       let file = require('@/assets/audios/lock_door_sound.mp3')
       let lock_door_audio = new Audio(file)
       lock_door_audio.play();
-      this.$emit('changeCredits', 'Оо... мына есіктен шыға алатын сияқтымын. Бірақ жабық тұр. Ашудың жолын іздеу керек.')
+      if(this.finishType) {
+        this.$emit('setFinish', this.finishType)
+      }
+      else{
+        this.$emit('changeCredits', 'Оо... мына есіктен шыға алатын сияқтымын. Бірақ жабық тұр. Ашудың жолын іздеу керек.')
+      }
     }
   },
 }
@@ -329,10 +347,6 @@ export default {
   top: 190px;
   width: 41px;
   height: 41px;
-}
-
-.glass:hover {
-  cursor: grab;
 }
 
 .thirdScene {

@@ -118,6 +118,7 @@ export default {
       this.$emit('setElementInInventar', {
         index: 5, payload: {
           image: require('@/assets/images/fourthScene/liver.png'),
+          title: 'liver',
           type: 'key',
           id: 5
         }

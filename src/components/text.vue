@@ -67,7 +67,15 @@ export default {
     },
     doAction(element) {
       if (element.type === 'key') {
+        let type = '';
         this.$emit('changeCursor', element.image)
+        if(element.title && element.title.includes('liver')) {
+          type = 'liver';
+        }
+        if(element.title && element.title.includes('eye')) {
+          type = 'eye'
+        }
+        this.$emit('setCursorType', type);
       }
       if (element.type === 'note') {
         console.log(element.full_image)

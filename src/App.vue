@@ -13,17 +13,18 @@
            v-if="cutSceneShow === 1 && ![1, 2, 3, 4].includes(level)" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits"
                 @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel"
-                v-if="level === 1"></FirstScene>
-    <SecondScene @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel"
-                 v-if="level === 2"></SecondScene>
+                v-if="level === 1 && !finish"></FirstScene>
+    <SecondScene @setFinish="setFinish" :finish="finish" :cursorType="cursorType" :cursorImage="cursorImage" @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel"
+                 v-if="level === 2 && !finish"></SecondScene>
     <ThirdScene @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @setLevel="setLevel"
                 @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar"
-                v-if="level === 3"></ThirdScene>
+                v-if="level === 3 && !finish"></ThirdScene>
     <FourthScene @setLevel="setLevel" @displayNoteToggle="displayNoteToggle"
                  @setElementInInventar="setElementInInventar" @changeNoteImage="changeNoteImage"
-                 v-if="level === 4"></FourthScene>
-    <div class="absolute bottom-6 zText" style="min-width: 1080px" v-if="level && cutSceneShow">
-      <textCustom :renderReload="renderReload" :showText="showText"
+                 v-if="level === 4 && !finish"></FourthScene>
+    <div class="absolute bottom-6 zText" style="min-width: 1080px" v-if="level && cutSceneShow && !finish">
+      <textCustom @setCursorType="setCursorType"
+          :renderReload="renderReload" :showText="showText"
                   @changeCursor="changeCursor"
                   :elements="elements"
                   @showTextToggle="showTextToggle"
@@ -31,6 +32,8 @@
                   :text="text"
       ></textCustom>
     </div>
+    <video v-if="finish === 'horror'" style="z-index: 900000000" src="@/assets/videos/horror.mp4"  autoplay height="100%" width="100%"></video>
+    <video v-if="finish === 'nice'" style="z-index: 900000000" src="@/assets/videos/niceEnded.mp4"  autoplay height="100%" width="100%"></video>
   </div>
 </template>
 
@@ -56,6 +59,8 @@ export default {
       noteImage: null,
       showText: true,
       cursorImage: null,
+      cursorType: null,
+      finish: null,
     }
   },
   mounted() {
@@ -104,6 +109,13 @@ export default {
         this.renderReload++
       }
       console.log(this.elements)
+    },
+    setCursorType(val) {
+      this.cursorType = val
+    },
+    setFinish(val) {
+      this.finish = val;
+      this.resetCursor()
     },
     resetCursor() {
       this.cursorImage = null;
