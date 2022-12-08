@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      isDark: true,
+      isDark: false,
       firstDoorOpened: false,
       showText: true,
       secondDoorActive: false,
