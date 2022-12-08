@@ -25,6 +25,10 @@
       <div class="claw4"></div>
       <div class="claw5"></div>
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
+
+      <div @click="goBack" class="back-icon">
+        <img src="../../assets/images/back-icon-right.png" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -62,6 +66,9 @@ export default {
     }
   },
   methods: {
+    goBack(){
+      this.$emit("setLevel", 2);
+    },
     setShowPrompts() {
       this.showPromts = true;
       setTimeout(()=> {
@@ -169,6 +176,16 @@ export default {
   background-size: cover;
   position: relative;
 }
+
+.back-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  right: 8px;
+  cursor: pointer;
+}
+
 
 .eye-element {
   position: absolute;
