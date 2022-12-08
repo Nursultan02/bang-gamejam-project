@@ -1,15 +1,9 @@
 <template>
   <div class="main-wrapper">
     <div class="game">
-      <!--      <div @click="putTheEye" class="glass"></div>-->
-      <!--      <div :class="canOpen ? 'door_1 active' : 'door_1'"></div>-->
-      <!--      <div @click="$emit('setLevel', 3)" class="thirdScene hover: cursor-pointer"></div>-->
-      <!--      <div @click="$emit('setLevel', 4)" class="fourthScene hover: cursor-pointer"></div>-->
-
       <div class="fire" :style="fireStyle">
         <div class="particle" v-for="i in 50" :key="i"></div>
       </div>
-
       <div @click="handleKeyClick(1)" class="key-1" :class="showPromts ? 'active-key' : ''"></div>
       <div @click="handleKeyClick(2)" class="key-2" :class="showPromts ? 'active-key' : ''"></div>
       <div @click="handleKeyClick(3)" class="key-3" :class="showPromts ? 'active-key' : ''"></div>
@@ -18,7 +12,12 @@
       <div v-if="!showPromts" class="answer-hider">
       </div>
 
-      <div @click="takeEye" class="lamp" :class="!showPromts ? 'lamp-animating' : ''"></div>
+      <div @click="setShowPrompts" class="lamp" :class="{'lamp-animating': !showPromts}"></div>
+      <div v-if="showNote && !noteReaded">
+        <img @click="startReadNote" src="@/assets/images/note.png" alt=""
+             class="note" :class="{'note-animation': showNote }"
+        >
+      </div>
       <div class="eye"></div>
       <div class="claw1"></div>
       <div class="claw2"></div>
@@ -39,17 +38,34 @@ export default {
       typeCombination: [],
       fireSize: "14px",
       showPromts: false,
-      giveEye: true,
+      giveEye: false,
+      showNote: false,
+      noteReaded: false,
+
     };
   },
   mounted() {
     let file = require('@/assets/audios/third-scene-audio.mp3')
     let audio1 = new Audio(file)
+    audio1.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    }, false);
     audio1.play();
   },
+  computed: {
+    fireStyle() {
+      return {
+        "font-size": this.fireSize
+      }
+    }
+  },
   methods: {
-    takeEye() {
+    setShowPrompts() {
       this.showPromts = true;
+      setTimeout(()=> {
+        this.showNote = true
+      }, 200)
     },
     reset() {
       this.fireSize = '14px';
@@ -103,32 +119,25 @@ export default {
           this.reset();
         }
       }
-
-
-      // if(this.typeCombination.length === 5 ){
-      //   if(JSON.stringify(this.typeCombination) === JSON.stringify(this.correctCombination)){
-      //     console.log("TRUE")
-      //     this.fireSize = '5px'
-      //   }else {
-      //     this.typeCombination = [];
-      //   }
-      // }
-
     },
     addToInventary() {
       this.$emit('setElementInInventar', {
-        index: 2, payload: {
+        index: 3, payload: {
           image: require("@/assets/images/third-scene-eye.png"),
           type: 'eye'
         }
       })
-    }
-  },
-  computed: {
-    fireStyle() {
-      return {
-        "font-size": this.fireSize
-      }
+    },
+    startReadNote() {
+      this.$emit('displayNoteToggle', true);
+      this.$emit('changeNoteImage', require('@/assets/images/noteThirdScene.png'));
+      this.$emit('setElementInInventar', {
+        index: 2, payload: {
+          image: require('@/assets/images/note.png'),
+          full_image: require('@/assets/images/noteThirdScene.png'),
+          type: 'note'
+        }
+      })
     }
   },
 }
@@ -289,8 +298,8 @@ export default {
   position: absolute;
   top: 162px;
   right: 266px;
-  width: 30px;
-  height: 89px;
+  width: 30px !important;
+  height: 89px !important;
   cursor: pointer;
   background-image: url("../../assets/images/third-scene-lamp.png");
   background-position: center;
@@ -315,23 +324,6 @@ export default {
     transform: rotate(-5deg);
   }
 }
-
-/*.lamp-animation {*/
-/*  -webkit-animation-name: cssAnimation;*/
-/*  -webkit-animation-duration: 3s;*/
-/*  -webkit-animation-iteration-count: 1;*/
-/*  -webkit-animation-timing-function: ease;*/
-/*  -webkit-animation-fill-mode: forwards;*/
-/*}*/
-
-/*@-webkit-keyframes cssAnimation {*/
-/*  from {*/
-/*    transform: rotate(0deg) scale(1) skew(0deg) translate(100px);*/
-/*  }*/
-/*  to {*/
-/*    transform: rotate(0deg) scale(2) skew(0deg) translate(100px);*/
-/*  }*/
-/*}*/
 
 .answer-hider {
   position: absolute;
@@ -684,6 +676,31 @@ export default {
   to {
     opacity: 0;
     transform: translateY(-10em) scale(0);
+  }
+}
+
+
+.note {
+  @apply w-6 h-8;
+  position: absolute;
+  transform: rotate(5deg);
+  top: 510px;
+  right: 280px;
+}
+
+.note-animation {
+  animation: note_falling 0.55s;
+}
+
+@keyframes note_falling {
+  0% {
+    top: 220px
+  }
+  /*25%   {top: 445px; left: 475px }*/
+  /*50%   {top: 470px; left: 483px }*/
+  /*75%  {top: 490px; left: 478px}*/
+  100% {
+    top: 510px
   }
 }
 

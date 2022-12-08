@@ -11,16 +11,17 @@
     <start-page @start-scene="setScene(1)" v-if="!level && !cutSceneShow"></start-page>
     <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel" v-if="level === 1"></FirstScene>
-    <SecondScene @changeCredits="changeCredits" @setLevel="setLevel" v-if="level === 2"></SecondScene>
-    <ThirdScene @setElementInInventar="setElementInInventar" v-if="level === 3"></ThirdScene>
+    <SecondScene @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel" v-if="level === 2"></SecondScene>
+    <ThirdScene  @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" v-if="level === 3"></ThirdScene>
     <FourthScene v-if="level === 4"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px">
-      <textCustom :key="renderReload" :showText="showText"
+      <textCustom :renderReload="renderReload" :showText="showText"
                   @changeCursor="changeCursor"
                   :elements="elements"
                   @showTextToggle="showTextToggle"
                   @showContext="showContext"
-                  :text="text"></textCustom>
+                  :text="text"
+      ></textCustom>
     </div>
   </div>
 </template>
@@ -67,6 +68,11 @@ export default {
     },
     changeCursor(val) {
       this.cursorImage = val
+
+      if(this.cursorImage) {
+        console.log('mouse is active')
+        window.addEventListener('click', this.mouseMoving)
+      }
     },
     showContext(val) {
       this.noteImage = val
@@ -81,16 +87,34 @@ export default {
     changeCredits(val) {
       this.text = val
     },
+    mouseMoving(e) {
+      console.log(e);
+      if(e.target.className !== 'door_1 active1' && e.srcElement !== e.target) {
+        this.resetCursor();
+      }
+    },
     setElementInInventar({index, payload}) {
       this.elements[index] = payload
       console.log(this.elements)
       this.renderReload++
-    }
+    },
+    resetCursor() {
+      this.cursorImage = null;
+    },
   }
 }
 </script>
 
 <style>
+.VueCarousel-dot-container {
+  margin-top: 0 !important
+}
+.VueCarousel-dot{
+  margin-top: 0 !important
+}
+.VueCarousel-slide{
+  margin-right: 0 !important;
+}
 body {
   margin: 0;
   padding: 0;

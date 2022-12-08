@@ -1,60 +1,95 @@
 <template>
   <div class="zText box-container">
     <div class="invertar">
-      <div class="box">
-        <Swiper :slides-per-view="3"
-                :space-between="1">
-          <swiper-slide v-for="element in elements" :key="element.id">
+      <!--      <div ref="swiper" :key="elements.length" class="swiper w-64">-->
+      <!--        <div class="swiper-wrapper" >-->
+      <!---->
+
+      <!--        <div class="swiper-button-prev "></div>-->
+      <!--        <div class="swiper-button-next"></div>-->
+
+      <!--        <div class="swiper-scrollbar"></div>-->
+      <!--      </div>-->
+      <carousel class="w-64" :perPage="3" :paginationEnabled="false" navigationEnabled>
+        <slide v-for="element in elements" :key="element.id">
+          <div class="box">
             <div class="border-2 border-solid border-gray-800 p-2"
                  style="width: 100%; height: 100%; margin: auto; background-color: #F0D0B5">
               <img @click="doAction(element)" :src="element.image" class="" alt="">
             </div>
-          </swiper-slide>
-        </Swiper>
-      </div>
+          </div>
+        </slide>
+      </carousel>
+
 
     </div>
-    <div class="text text-gray-700 font-medium" v-show="showText">
+    <div class="text text-gray-700 font-medium" :key="renderReload" v-show="showText">
       {{ text }}
     </div>
   </div>
 </template>
 
 <script>
-import {Swiper, SwiperSlide} from 'swiper/vue'
-
-import 'swiper/css';
+import {Carousel, Slide} from 'vue-carousel'
 
 export default {
   name: "textCustom",
   props: {
     text: String,
     showText: Boolean,
+    renderReload: Number,
     elements: {
       default: () => [{}, {}, {}],
       type: Array
-    }
+    },
   },
-  components: {Swiper, SwiperSlide},
   data() {
     return {
       textFromParent: ''
     }
   },
   mounted() {
+    // this.reloadSwiper();
+  },
+  components: {
+    Carousel,
+    Slide,
   },
   methods: {
+    // reloadSwiper() {
+    //   new Swiper(this.$refs.swiper, {
+    //     // configure Swiper to use modules
+    //     modules: [Navigation, Pagination],
+    //     // Navigation arrows
+    //     navigation: {
+    //       nextEl: '.swiper-button-next',
+    //       prevEl: '.swiper-button-prev',
+    //     },
+    //     pagination: {
+    //       el: '.swiper-pagination',
+    //       clickable: true,
+    //     },
+    //
+    //     // And if we need scrollbar
+    //     scrollbar: {
+    //       el: '.swiper-scrollbar',
+    //     },
+    //
+    //     slidesPerView: 3,
+    //     spaceBetween: 1,
+    //   })
+    // },
     doAction(element) {
       if (element.type === 'key') {
         this.$emit('changeCursor', element.image)
       }
       if (element.type === 'note') {
-        console.log('we are here')
+        console.log(element.full_image)
         this.$emit('showContext', element.full_image);
       }
-      if (element.type === 'key') {
-        this.$emit('changeCursor', element.image);
-      }
+      // if (element.type === 'key') {
+      //   this.$emit('changeCursor', element.image);
+      // }
     }
   }
 }
@@ -73,7 +108,7 @@ export default {
   width: 80px;
   height: 80px;
   background-color: #CDB7A4;
-  @apply border border-solid border-gray-600 flex justify-center items-center p-2;
+  @apply border border-solid border-gray-600 p-2;
 }
 
 .box-container {
@@ -84,7 +119,6 @@ export default {
 .invertar {
   @apply flex;
 }
-
 
 .text {
   overflow: hidden; /* Ensures the content is not revealed until the animation */

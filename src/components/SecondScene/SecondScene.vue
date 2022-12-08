@@ -8,7 +8,7 @@
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
-      <div class="particle" v-for="i in 101" :key="i"></div>
+      <div class="particle" v-for="i in 50" :key="i"></div>
     </div>
   </div>
 </div>
@@ -24,6 +24,7 @@ export default {
   },
   mounted() {
     this.$emit("changeCredits", 'Какой то текст который потом будет добавлен')
+    this.$emit('resetCursor');
   },
   methods: {
     putTheEye(){
