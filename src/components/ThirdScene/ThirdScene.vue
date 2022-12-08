@@ -26,7 +26,7 @@
       <div class="claw5"></div>
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
 
-      <div @click="goBack" class="back-icon">
+      <div v-if="showBackIcon" @click="goBack" class="back-icon">
         <img src="../../assets/images/back-icon-right.png" alt="">
       </div>
     </div>
@@ -46,7 +46,8 @@ export default {
       showNote: false,
       noteReaded: false,
       showEye: true,
-      audio: null
+      audio: null,
+      showBackIcon: false,
     };
   },
   mounted() {
@@ -143,6 +144,7 @@ export default {
       })
 
       this.showEye = false;
+      this.showBackIcon = true;
     },
     startReadNote() {
       this.$emit('displayNoteToggle', true);

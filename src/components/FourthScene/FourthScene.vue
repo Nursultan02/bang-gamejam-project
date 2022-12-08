@@ -14,6 +14,10 @@
       <div v-if="showTree" class="flower"></div>
 
       <div v-for="i in 6" @click="handleKeyClick(i)" :class="`petal-${i}`" :key="i"></div>
+
+      <div v-if="showBackIcon" @click="goBack" class="back-icon">
+        <img src="../../assets/images/back-icon-left.png" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -27,14 +31,18 @@ export default {
       typeCombination: [],
       showTree: false,
       birdOpened: true,
-      cupboardClosed: false,
+      cupboardClosed: true,
       showNote: false,
       firstNoteReaded: false,
-      showLiver: true,
-      showSecondNote: true,
+      showLiver: false,
+      showSecondNote: false,
+      showBackIcon: false,
     }
   },
   methods: {
+    goBack(){
+      this.$emit("setLevel", 2);
+    },
     showMagicTree(){
       this.showTree = true;
     },
@@ -70,8 +78,9 @@ export default {
         }
       })
       this.showSecondNote = false;
-      if(!this.showSecondNote && !this.showLiver) {
-        this.$emit('setLevel', 2)
+      if(!this.showSecondNote && !this.showLiver && !this.cupboardClosed) {
+        this.showBackIcon = true;
+        // this.$emit('setLevel', 2)
       }
     },
     addLiver() {
@@ -83,8 +92,9 @@ export default {
         }
       })
       this.showLiver = false;
-      if(!this.showLiver && !this.showSecondNote) {
-        this.$emit('setLevel', 2)
+      if(!this.showLiver && !this.showSecondNote && !this.cupboardClosed) {
+        this.showBackIcon = true;
+        // this.$emit('setLevel', 2)
       }
     },
     handleKeyClick(key) {
@@ -145,6 +155,16 @@ export default {
   background-image: url("../../assets/images/fourthScene/fourth-scene-bg.png");
   position: relative;
 }
+
+.back-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  left: 8px;
+  cursor: pointer;
+}
+
 
 .petal-1 {
   position: absolute;

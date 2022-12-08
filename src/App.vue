@@ -12,7 +12,7 @@
     <video @ended="setLevel(1)" autoplay height="100%" width="100%" v-if="cutSceneShow === 1 && level !== 1" src="@/assets/videos/Scene1.mp4"></video>
     <FirstScene :keyHanded="cursorImage" @setElementInInventar="setElementInInventar" @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setLevel="setLevel" v-if="level === 1"></FirstScene>
     <SecondScene @resetCursor="resetCursor" @changeCredits="changeCredits" @setLevel="setLevel" v-if="level === 2"></SecondScene>
-    <ThirdScene @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" v-if="level === 3"></ThirdScene>
+    <ThirdScene @changeCredits="changeCredits" @changeNoteImage="changeNoteImage" @setLevel="setLevel" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" v-if="level === 3"></ThirdScene>
     <FourthScene @setLevel="setLevel" @displayNoteToggle="displayNoteToggle" @setElementInInventar="setElementInInventar" @changeNoteImage="changeNoteImage" v-if="level === 4"></FourthScene>
     <div class="absolute bottom-6 zText" style="min-width: 1080px">
       <textCustom :renderReload="renderReload" :showText="showText"
@@ -38,7 +38,7 @@ export default {
   components: {ThirdScene, FourthScene, SecondScene, FirstScene, StartPage, textCustom },
   data() {
     return {
-      level: 4,
+      level: 3,
       cutSceneShow: 2,
       elements: [{}, {}, {}],
       renderReload: 1,
