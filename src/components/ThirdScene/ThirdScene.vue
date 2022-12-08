@@ -46,17 +46,18 @@ export default {
       showNote: false,
       noteReaded: false,
       showEye: true,
+      audio: null
     };
   },
   mounted() {
     this.$emit("changeCredits", 'Үй иесінің кабинеті секілді. Мұнда не бар екенін көрейік.')
     let file = require('@/assets/audios/third-scene-audio.mp3')
-    let audio1 = new Audio(file)
-    audio1.addEventListener('ended', function () {
+    this.audio = new Audio(file)
+    this.audio.addEventListener('ended', function () {
       this.currentTime = 0;
       this.play();
     }, false);
-    audio1.play();
+    this.audio.play();
   },
   computed: {
     fireStyle() {
@@ -92,6 +93,7 @@ export default {
       if (len === 1) {
         if (this.correctCombination[0] === key) {
           this.fireSize = '12px';
+          this.audio.volume = 0.8;
         } else {
           this.reset();
         }
@@ -99,6 +101,7 @@ export default {
       if (len === 2) {
         if (this.correctCombination[1] === key) {
           this.fireSize = '10px';
+          this.audio.volume = 0.6;
         } else {
           this.reset();
         }
@@ -106,6 +109,7 @@ export default {
       if (len === 3) {
         if (this.correctCombination[2] === key) {
           this.fireSize = '8px';
+          this.audio.volume = 0.4;
         } else {
           console.log(this.typeCombination)
           this.reset();
@@ -114,6 +118,7 @@ export default {
       if (len === 4) {
         if (this.correctCombination[3] === key) {
           this.fireSize = '5px';
+          this.audio.volume = 0.2;
         } else {
           this.reset();
         }
@@ -121,6 +126,7 @@ export default {
       if (len === 5) {
         if (this.correctCombination[4] === key) {
           this.fireSize = '3px';
+          this.audio.volume = 0;
           this.giveEye = true;
           console.log('DONE!')
         } else {
