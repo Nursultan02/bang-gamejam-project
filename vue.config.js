@@ -12,9 +12,6 @@ const myPreloadPlug = new VuePreloadPlugin({
   }
 })
 module.exports = defineConfig({
-  publicPath: process.env.NODE_ENV === 'production'
-      ? '/bang-gamejam-project/'
-      : '/',
   transpileDependencies: true,
   configureWebpack: {
     plugins: [myPreloadPlug]
