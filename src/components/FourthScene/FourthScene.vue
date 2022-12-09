@@ -6,17 +6,17 @@
       <div  class="magic_tree" :class="{'magic_tree_showing': showTree}"></div>
 
       <div @click="getNodeFromBird" class="bird" :class="{'bird_opened': birdOpened, 'bird_closed': !birdOpened, 'bird_showing': showTree}"></div>
-      <img @click="openFirstNote" v-if="showNote && !firstNoteReaded" src="/images/fourthScene/FirstNote.png" class="note" :class="{'note-animation': showNote}" alt="">
+      <img @click="openFirstNote" v-if="showNote && !firstNoteReaded" src="@/assets/images/fourthScene/FirstNote.png" class="note" :class="{'note-animation': showNote}" alt="">
       <div class="cupboard" :class="cupboardClosed ? 'closed_cupboard' : 'opened_cupboard'"></div>
-      <img v-if="showLiver" @click="addLiver" src="/images/fourthScene/liver.png" class="liver" alt="">
-      <img v-if="showSecondNote" @click="openSecondNote" src="/images/fourthScene/FirstNote.png" class="second-note" alt="">
+      <img v-if="showLiver" @click="addLiver" src="@/assets/images/fourthScene/liver.png" class="liver" alt="">
+      <img v-if="showSecondNote" @click="openSecondNote" src="@/assets/images/fourthScene/FirstNote.png" class="second-note" alt="">
 
       <div v-if="showTree" class="flower"></div>
 
       <div v-for="i in 6" @click="handleKeyClick(i)" :class="`petal-${i}`" :key="i"></div>
 
       <div v-if="elementsLength === 7" @click="goBack" class="back-icon">
-        <img src="/images/back-icon-left.png" alt="">
+        <img src="@/assets/images/back-icon-left.png" alt="">
       </div>
 
       <div @click="toggleLamp" class="lamp_1"></div>
@@ -82,11 +82,11 @@ export default {
       let grab_audio = new Audio(file)
       grab_audio.play();
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', '/images/fourthScene/openedSecondNote.png')
+      this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedSecondNote.png'))
       this.$emit('setElementInInventar', {
         index: 5, payload: {
-          image: '/images/fourthScene/FirstNote.png',
-          full_image: '/images/fourthScene/openedSecondNote.png',
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/fourthScene/openedSecondNote.png'),
           type: 'note',
           id: 6
         }
@@ -98,11 +98,11 @@ export default {
       let grab_audio = new Audio(file)
       grab_audio.play();
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', '/images/fourthScene/openedFirstNote.png')
+      this.$emit('changeNoteImage', require('@/assets/images/fourthScene/openedFirstNote.png'))
       this.$emit('setElementInInventar', {
         index: 5, payload: {
-          image: '/images/fourthScene/FirstNote.png',
-          full_image: '/images/fourthScene/openedFirstNote.png',
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/fourthScene/openedFirstNote.png'),
           type: 'note',
           id: 7
         }
@@ -118,7 +118,7 @@ export default {
       grab_audio.play();
       this.$emit('setElementInInventar', {
         index: 5, payload: {
-          image: '/images/fourthScene/liver.png',
+          image: require('@/assets/images/fourthScene/liver.png'),
           title: 'liver',
           type: 'key',
           id: 5
@@ -193,7 +193,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../public/images/fourthScene/fourth-scene-bg.png");
+  background-image: url("@/assets/images/fourthScene/fourth-scene-bg.png");
   position: relative;
 }
 
@@ -304,7 +304,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../public/images/fourthScene/flower.png");
+  background-image: url("@/assets/images/fourthScene/flower.png");
 }
 
 .cupboard {
@@ -320,11 +320,11 @@ export default {
 }
 
 .opened_cupboard {
-  background-image: url("../../../public/images/fourthScene/opened_cupboard.png");
+  background-image: url("@/assets/images/fourthScene/opened_cupboard.png");
 }
 
 .closed_cupboard {
-  background-image: url("../../../public/images/fourthScene/closed_cupboard.png");
+  background-image: url("@/assets/images/fourthScene/closed_cupboard.png");
 }
 
 .bird {
@@ -333,7 +333,7 @@ export default {
   left: 130px;
   width: 65px;
   height: 65px;
-  background-image: url("../../../public/images/fourthScene/closed_bird.png");
+  background-image: url("@/assets/images/fourthScene/closed_bird.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -347,11 +347,11 @@ export default {
 }
 
 .bird_opened {
-  background-image: url("../../../public/images/fourthScene/opened_bird.png");
+  background-image: url("@/assets/images/fourthScene/opened_bird.png");
 }
 
 .bird_closed {
-  background-image: url("../../../public/images/fourthScene/closed_bird.png");
+  background-image: url("@/assets/images/fourthScene/closed_bird.png");
 }
 
 .magic_tree {
@@ -363,7 +363,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../public/images/fourthScene/magic_tree.png");
+  background-image: url("@/assets/images/fourthScene/magic_tree.png");
   opacity: 0;
   transition: opacity 1.2s ease-in-out;
 }
@@ -381,7 +381,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../public/images/fourthScene/kid_bed.png");
+  background-image: url("@/assets/images/fourthScene/kid_bed.png");
   cursor: pointer;
 }
 

@@ -12,10 +12,10 @@
       <div class="sandBox" @click="openBox" :class="openedBox ? 'sandbox-opened' : 'sandbox-closed'">
       </div>
       <div class="dresser relative" @click="toggleDresser">
-        <img v-if="showOpenedDresser" src="/images/openedDresser.png" alt="">
+        <img v-if="showOpenedDresser" src="/src/assets/images/openedDresser.png" alt="">
       </div>
 
-      <img v-if="showNote && !noteReaded" @click="startReadNote" src="/images/note.png" alt=""
+      <img v-if="showNote && !noteReaded" @click="startReadNote" src="/src/assets/images/note.png" alt=""
            class="note" :class="{'note-animation': showNote }"
            style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     bgImage() {
-      return this.openedBox ? '/images/openedBoxBG.png' : '/images/first-scene-bg.png';
+      return this.openedBox ? require('@/assets/images/openedBoxBG.png') : require('@/assets/images/first-scene-bg.png');
     }
   },
   mounted() {
@@ -105,7 +105,7 @@ export default {
       grab_audio.play();
       this.displayNote = true;
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', '/images/openedNote.png')
+      this.$emit('changeNoteImage', require('@/assets/images/openedNote.png'))
       this.addFirstPage();
       this.noteReaded = true;
     },
@@ -124,7 +124,7 @@ export default {
         this.$emit('setElementInInventar', {
           index: 1, payload: {
             id: 1,
-            image: '/images/keys/key1.png',
+            image: require('@/assets/images/keys/key1.png'),
             type: 'key'
           }
         })
@@ -135,8 +135,8 @@ export default {
       this.$emit('setElementInInventar', {
         index: 0, payload:{
           id: 0,
-          image: '/images/note.png',
-          full_image: '/images/openedNote.png',
+          image: require('@/assets/images/note.png'),
+          full_image: require('@/assets/images/openedNote.png'),
           type: 'note'
         }
       })
@@ -166,7 +166,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../public/images/first-scene-bg.png");
+  background-image: url("@/assets/images/first-scene-bg.png");
   position: relative;
 }
 .sandBox {
@@ -182,11 +182,11 @@ export default {
 }
 
 .sandbox-opened {
-  background-image: url("../../../public/images/openedBox.png");
+  background-image: url("@/assets/images/openedBox.png");
 }
 
 .sandbox-closed {
-  background-image: url("../../../public/images/closedBox.png");
+  background-image: url("@/assets/images/closedBox.png");
 }
 
 .eye_blincking_up {

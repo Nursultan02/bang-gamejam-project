@@ -137,7 +137,7 @@ export default {
   border: 5px solid #fff;
   min-width: 1080px;
   min-height: 720px;
-  background-image: url("../../../public/images/second-scene-bg.png");
+  background-image: url("../../assets/images/second-scene-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -174,7 +174,7 @@ export default {
   left: 247px;
   width: 30px;
   height: 30px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -187,7 +187,7 @@ export default {
   left: 247px;
   width: 20px;
   height: 20px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -200,7 +200,7 @@ export default {
   left: 247px;
   width: 15px;
   height: 15px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -213,7 +213,7 @@ export default {
   left: 207px;
   width: 15px;
   height: 15px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -226,7 +226,7 @@ export default {
   left: 205px;
   width: 25px;
   height: 25px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -239,7 +239,7 @@ export default {
   left: 250px;
   width: 13px;
   height: 13px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -252,7 +252,7 @@ export default {
   right: 247px;
   width: 30px;
   height: 30px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -265,7 +265,7 @@ export default {
   right: 247px;
   width: 20px;
   height: 20px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -278,7 +278,7 @@ export default {
   right: 247px;
   width: 15px;
   height: 15px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -291,7 +291,7 @@ export default {
   right: 207px;
   width: 15px;
   height: 15px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -304,7 +304,7 @@ export default {
   right: 205px;
   width: 25px;
   height: 25px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -317,7 +317,7 @@ export default {
   right: 260px;
   width: 13px;
   height: 13px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -330,7 +330,7 @@ export default {
   right: 210px;
   width: 13px;
   height: 13px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -343,7 +343,7 @@ export default {
   right: 194px;
   width: 27px;
   height: 27px;
-  background-image: url("../../../public/images/star.png");
+  background-image: url("../../assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
