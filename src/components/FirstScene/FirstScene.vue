@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <div :class="[isDark ? 'game dark' : 'game']" :style="`background-image: url(${bgImage})`">
+    <div :class="[isDark ? 'game dark' : 'game']">
       <div @click="openDoor" class="door_1" :class="{'active1': !isDark}">
         <transition name="door">
           <div v-if="firstDoorOpened" class="openedDoor">
@@ -9,7 +9,8 @@
           </div>
         </transition>
       </div>
-      <div class="sandBox" @click="openBox"></div>
+      <div class="sandBox" @click="openBox" :class="openedBox ? 'sandbox-opened' : 'sandbox-closed'">
+      </div>
       <div class="dresser relative" @click="toggleDresser">
         <img v-if="showOpenedDresser" src="/images/openedDresser.png" alt="">
       </div>
@@ -165,7 +166,27 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-image: url("../../../public/images/first-scene-bg.png");
   position: relative;
+}
+.sandBox {
+  position: absolute;
+  width: 110px;
+  height: 80px;
+  top: 307px;
+  right: 460px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.sandbox-opened {
+  background-image: url("../../../public/images/openedBox.png");
+}
+
+.sandbox-closed {
+  background-image: url("../../../public/images/closedBox.png");
 }
 
 .eye_blincking_up {
@@ -331,18 +352,6 @@ export default {
   z-index: 3000;
   cursor: pointer;
 }
-
-.sandBox {
-  position: absolute;
-  width: 120px;
-  height: 70px;
-  top: 310px;
-  right: 450px;
-  border: 0;
-  cursor: pointer;
-}
-
-
 
 .slide-move-enter-active {
   opacity: 1;
