@@ -27,7 +27,7 @@
       <div class="claw5"></div>
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
 
-      <div @click="goBack" class="back-icon">
+      <div v-if="elements.length === 4" @click="goBack" class="back-icon">
         <img src="../../../public/images/back-icon-right.png" alt="">
       </div>
 
