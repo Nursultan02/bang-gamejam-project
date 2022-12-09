@@ -19,6 +19,8 @@
            style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
       <div @click="toggleLamp" class="lamp"></div>
+      <div class="eye_blincking_up eye_blincking_up_animation"></div>
+      <div class="eye_blincking_down eye_blincking_down_animation"></div>
     </div>
   </div>
 </template>
@@ -164,6 +166,45 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.eye_blincking_up {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 0;
+  background-color: #000;
+}
+
+.eye_blincking_down {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 0;
+  background-color: #000;
+}
+
+.eye_blincking_up_animation {
+  animation: eye_up 4s ease-in;
+}
+.eye_blincking_down_animation {
+  animation: eye_down 4s ease-in;
+}
+
+@keyframes eye_up {
+  0% { height: 0;}
+  10% { height: 350px; }
+  50% { height: 0; }
+  60% { height: 270px; }
+  100 { height: 0; }
+}
+
+@keyframes eye_down {
+  0% { height: 0;}
+  10% { height: 350px; }
+  50% { height: 0; }
+  60% { height: 270px;}
+100 { height: 0; }
 }
 
 .note {
