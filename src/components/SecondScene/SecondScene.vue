@@ -137,7 +137,7 @@ export default {
   border: 5px solid #fff;
   min-width: 1080px;
   min-height: 720px;
-  background-image: url("../../assets/images/second-scene-bg.png");
+  background-image: url("@/assets/images/second-scene-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
