@@ -28,7 +28,7 @@
       <div @click="addToInventary" v-if="showEye" class="eye-element" :class="giveEye ? 'eye-element-falling' : ''"></div>
 
       <div @click="goBack" class="back-icon">
-        <img src="/images/back-icon-right.png" alt="">
+        <img src="../../../public/images/back-icon-right.png" alt="">
       </div>
 
       <div @click="toggleLamp" class="lamp_1"></div>
@@ -181,11 +181,11 @@ export default {
       let grab_audio = new Audio(file)
       grab_audio.play();
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', 'images/ThirdScene/noteThirdScene.png');
+      this.$emit('changeNoteImage', '/images/ThirdScene/noteThirdScene.png');
       this.$emit('setElementInInventar', {
         index: 2, payload: {
-          image: 'images/ThirdScene/blueNote.png',
-          full_image: 'images/ThirdScene/noteThirdScene.png',
+          image: '/images/ThirdScene/blueNote.png',
+          full_image: '/images/ThirdScene/noteThirdScene.png',
           type: 'note',
           id: 9
         }
@@ -212,7 +212,7 @@ export default {
   border: 5px solid #fff;
   min-width: 1080px;
   min-height: 720px;
-  background-image: url("/images/third-scene-bg.png");
+  background-image: url("../../../public/images/third-scene-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -247,7 +247,7 @@ export default {
   position: absolute;
   width: 25px;
   height: 25px;
-  background-image: url("/images/third-scene-eye.png");
+  background-image: url("../../../public/images/third-scene-eye.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -379,7 +379,7 @@ export default {
   width: 30px !important;
   height: 89px !important;
   cursor: pointer;
-  background-image: url("/images/third-scene-lamp.png");
+  background-image: url("../../../public/images/third-scene-lamp.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

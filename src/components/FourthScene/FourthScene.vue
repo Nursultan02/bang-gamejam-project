@@ -193,7 +193,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/fourthScene/fourth-scene-bg.png");
+  background-image: url("../../../public/images/fourthScene/fourth-scene-bg.png");
   position: relative;
 }
 
@@ -304,7 +304,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/fourthScene/flower.png");
+  background-image: url("../../../public/images/fourthScene/flower.png");
 }
 
 .cupboard {
@@ -320,11 +320,11 @@ export default {
 }
 
 .opened_cupboard {
-  background-image: url("/images/fourthScene/opened_cupboard.png");
+  background-image: url("../../../public/images/fourthScene/opened_cupboard.png");
 }
 
 .closed_cupboard {
-  background-image: url("/images/fourthScene/closed_cupboard.png");
+  background-image: url("../../../public/images/fourthScene/closed_cupboard.png");
 }
 
 .bird {
@@ -333,7 +333,7 @@ export default {
   left: 130px;
   width: 65px;
   height: 65px;
-  background-image: url("/images/fourthScene/closed_bird.png");
+  background-image: url("../../../public/images/fourthScene/closed_bird.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -347,11 +347,11 @@ export default {
 }
 
 .bird_opened {
-  background-image: url("/images/fourthScene/opened_bird.png");
+  background-image: url("../../../public/images/fourthScene/opened_bird.png");
 }
 
 .bird_closed {
-  background-image: url("/images/fourthScene/closed_bird.png");
+  background-image: url("../../../public/images/fourthScene/closed_bird.png");
 }
 
 .magic_tree {
@@ -363,7 +363,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/fourthScene/magic_tree.png");
+  background-image: url("../../../public/images/fourthScene/magic_tree.png");
   opacity: 0;
   transition: opacity 1.2s ease-in-out;
 }
@@ -381,7 +381,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/fourthScene/kid_bed.png");
+  background-image: url("../../../public/images/fourthScene/kid_bed.png");
   cursor: pointer;
 }
 
