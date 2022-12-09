@@ -5,7 +5,7 @@
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
     <div @click="openThirdScene" class="thirdScene hover: cursor-pointer" :class="{'active_scene': activeThird}"></div>
     <div @click="openFourthScene" class="fourthScene hover: cursor-pointer" :class="{'active_scene': activeFourth}"></div>
-    <img @click="addToInventary" v-if="elementsLength === 7 && !lastNoteReaded" src="images/fourthScene/FirstNote.png" alt="" class="last-note">
+    <img @click="addToInventary" v-if="elementsLength === 7 && !lastNoteReaded" src="@/assets/images/fourthScene/FirstNote.png" alt="" class="last-note">
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
@@ -106,12 +106,12 @@ export default {
     },
     addToInventary() {
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage','/images/last-note.png');
+      this.$emit('changeNoteImage','@/assets/images/last-note.png');
       this.$emit('setElementInInventar', {
         index: 11, payload: {
           id: 11,
-          image: '/images/fourthScene/FirstNote.png',
-          full_image: '/images/last-note.png',
+          image: '@/assets/images/fourthScene/FirstNote.png',
+          full_image: '@/assets/images/last-note.png',
           type: 'note'
         }
       })
@@ -174,7 +174,7 @@ export default {
   left: 247px;
   width: 30px;
   height: 30px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -187,7 +187,7 @@ export default {
   left: 247px;
   width: 20px;
   height: 20px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -200,7 +200,7 @@ export default {
   left: 247px;
   width: 15px;
   height: 15px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -213,7 +213,7 @@ export default {
   left: 207px;
   width: 15px;
   height: 15px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -226,7 +226,7 @@ export default {
   left: 205px;
   width: 25px;
   height: 25px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -239,7 +239,7 @@ export default {
   left: 250px;
   width: 13px;
   height: 13px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -252,7 +252,7 @@ export default {
   right: 247px;
   width: 30px;
   height: 30px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -265,7 +265,7 @@ export default {
   right: 247px;
   width: 20px;
   height: 20px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -278,7 +278,7 @@ export default {
   right: 247px;
   width: 15px;
   height: 15px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -291,7 +291,7 @@ export default {
   right: 207px;
   width: 15px;
   height: 15px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -304,7 +304,7 @@ export default {
   right: 205px;
   width: 25px;
   height: 25px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -317,7 +317,7 @@ export default {
   right: 260px;
   width: 13px;
   height: 13px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -330,7 +330,7 @@ export default {
   right: 210px;
   width: 13px;
   height: 13px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -343,7 +343,7 @@ export default {
   right: 194px;
   width: 27px;
   height: 27px;
-  background-image: url("../../assets/images/star.png");
+  background-image: url("@/assets/images/star.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
