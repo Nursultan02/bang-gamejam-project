@@ -106,12 +106,12 @@ export default {
     },
     addToInventary() {
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage','@/assets/images/last-note.png');
+      this.$emit('changeNoteImage', require('@/assets/images/last-note.png'));
       this.$emit('setElementInInventar', {
         index: 11, payload: {
           id: 11,
-          image: '@/assets/images/fourthScene/FirstNote.png',
-          full_image: '@/assets/images/last-note.png',
+          image: require('@/assets/images/fourthScene/FirstNote.png'),
+          full_image: require('@/assets/images/last-note.png'),
           type: 'note'
         }
       })
