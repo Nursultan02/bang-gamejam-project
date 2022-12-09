@@ -12,10 +12,10 @@
       <div class="sandBox" @click="openBox" :class="openedBox ? 'sandbox-opened' : 'sandbox-closed'">
       </div>
       <div class="dresser relative" @click="toggleDresser">
-        <img v-if="showOpenedDresser" src="/src/assets/images/openedDresser.png" alt="">
+        <img v-if="showOpenedDresser" src="@/assets/images/openedDresser.png" alt="">
       </div>
 
-      <img v-if="showNote && !noteReaded" @click="startReadNote" src="/src/assets/images/note.png" alt=""
+      <img v-if="showNote && !noteReaded" @click="startReadNote" src="@/assets/images/note.png" alt=""
            class="note" :class="{'note-animation': showNote }"
            style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
