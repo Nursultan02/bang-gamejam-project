@@ -11,10 +11,10 @@
       </div>
       <div class="sandBox" @click="openBox"></div>
       <div class="dresser relative" @click="toggleDresser">
-        <img v-if="showOpenedDresser" src="images/openedDresser.png" alt="">
+        <img v-if="showOpenedDresser" src="/images/openedDresser.png" alt="">
       </div>
 
-      <img v-if="showNote && !noteReaded" @click="startReadNote" src="images/note.png" alt=""
+      <img v-if="showNote && !noteReaded" @click="startReadNote" src="/images/note.png" alt=""
            class="note" :class="{'note-animation': showNote }"
            style="z-index: 4000">
       <div @click="changeText" class="door_2" :class="{'active2': secondDoorActive}"></div>
@@ -102,7 +102,7 @@ export default {
       grab_audio.play();
       this.displayNote = true;
       this.$emit('displayNoteToggle', true);
-      this.$emit('changeNoteImage', 'images/openedNote.png')
+      this.$emit('changeNoteImage', '/images/openedNote.png')
       this.addFirstPage();
       this.noteReaded = true;
     },
@@ -121,7 +121,7 @@ export default {
         this.$emit('setElementInInventar', {
           index: 1, payload: {
             id: 1,
-            image: 'images/keys/key1.png',
+            image: '/images/keys/key1.png',
             type: 'key'
           }
         })
