@@ -5,7 +5,7 @@
     <div @click="openCentralDoor" :class="canOpen ? 'door_1 active cursor-pointer' : 'door_1 cursor-not-allowed'"></div>
     <div @click="openThirdScene" class="thirdScene hover: cursor-pointer" :class="{'active_scene': activeThird}"></div>
     <div @click="openFourthScene" class="fourthScene hover: cursor-pointer" :class="{'active_scene': activeFourth}"></div>
-    <img @click="addToInventary" v-if="activeThird && activeFourth && !lastNoteReaded" src="images/fourthScene/FirstNote.png" alt="" class="last-note">
+    <img @click="addToInventary" v-if="elementsLength === 7 && !lastNoteReaded" src="images/fourthScene/FirstNote.png" alt="" class="last-note">
     <div v-for="i in 18" :key="i + 'star'" :class="`star-${i+1}`"></div>
 
     <div class="water_bulking">
