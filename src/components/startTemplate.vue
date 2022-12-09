@@ -5,10 +5,10 @@
     <div style="position: absolute; right: 10%; top: 30%; margin: 0 auto; display: flex; align-items: center; flex-direction: column">
       <h1 style="font-size: 60px; margin-bottom: 10px">AL<span style="color: #5f4381">BWS</span></h1>
       <p class="button-start" @click="startCutScene" style="">{{$t('Начать игру')}}</p>
-      <div class="langs">
-        <span>KAZ</span>
-        <span>RUS</span>
-      </div>
+<!--      <div class="langs">-->
+<!--        <span>KAZ</span>-->
+<!--        <span>RUS</span>-->
+<!--      </div>-->
     </div>
 
   </div>
